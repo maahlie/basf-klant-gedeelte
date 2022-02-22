@@ -182,7 +182,158 @@ $_user = $_SESSION["_user"];
         <div class="container-fluid">
           <div class="row">
             <!-- column -->
+
             <div class="col-md-12">
+            <div class="card">
+                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
+                  <div class="card-body">
+                    <h4 class="card-title">Werk indeling</h4><br>
+                  <div class="col-lg-6">
+                  
+                  <div class="form-group row">
+                  <label
+                     for="fname">Week </label>
+                      <div class="col-sm-9">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="fname"
+                      placeholder="..."
+                      min="1"
+                      max="52"
+                      name="_task_Force"
+                     />
+                   </div>
+                 </div>          
+               <label>Gewas</label>
+                  <div class="input-group">
+                  <input list="crop" class="form-control" placeholder="...">
+                    <datalist id="crop">
+                      <option value="LEL">
+                      <option value="CAC">
+                      <option value="SPS">
+                      <option value="CEC">
+                      <option value="ASA">
+                    </datalist>
+                  </div>
+                </div><br>
+                <div class="form-group row">
+                 <label
+                   for="cono1">Werkindeling</label>
+                   <div class="col-lg-6">
+                   <div class="table-responsive">   
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Ma.</th>
+                          <th>Di.</th>
+                          <th>Wo.</th>
+                          <th>Do.</th>
+                          <th>Vr.</th>
+                          <th>Za.</th>
+                          <th>Zo.</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Joep<br>Ton<br>Egbert</th>
+                          <th>Joep<br>Ton<br>Egbert</th>
+                          <th>Joep<br>Ton<br>Egbert</th>
+                          <th>Gijs<br>Rick<br>Joop</th>
+                          <th>Gijs<br>Rick<br>Joop</th>
+                          <th>Ricardo<br>Guy<br>Tom</th>
+                          <th>Ricardo<br>Guy<br>Tom</th>
+                        </tr>
+                      </tbody>
+                    </table> 
+                  </div>
+                </div>
+                  <div class="border-top">
+                    <div class="card-body">
+                      <button type="submit" class="btn btn-primary" name="_submit_Task">
+                        Toon werkindeling
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+            
+            <div class="col-md-12">
+            <div class="card">
+                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
+                  <div class="card-body">
+                    <h4 class="card-title">Aanvraag maken</h4><br>
+                  <div class="col-lg-6">
+                  
+                  <div class="form-group row">
+                  <label
+                     for="fname">Hoeveel werknemers zijn er nodig</label>
+                      <div class="col-sm-9">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="fname"
+                      placeholder="5, 10, 20"
+                      min="1"
+                      max="20"
+                      name="_task_Force"
+                     />
+                   </div>
+                 </div>          
+                 <label>Gewas</label>
+                  <div class="input-group">
+                  <input list="crop" name="_task_crop" class="form-control" placeholder="...">
+                    <datalist id="crop">
+                      <option value="LEL">
+                      <option value="CAC">
+                      <option value="SPS">
+                      <option value="CEC">
+                      <option value="ASA">
+                    </datalist>
+                  </div><br>
+                  <label>Werkzaamheid</label>
+                  <div class="input-group">
+                  <input list="work" name="_task_work" class="form-control" placeholder="...">
+                    <datalist id="work">
+                    </datalist>
+                  </div><br>
+               <label>Datum werkzaamheden</label>
+                  <div class="input-group">
+                    <input
+                      type="date"
+                      class="form-control mydatepicker"
+                      placeholder="mm/dd/yyyy"
+                      min="<?= date('Y-m-d'); ?>"
+                      name="_task_Date"
+                    />
+                  </div>
+                </div><br>
+                <div class="form-group row">
+                 <label
+                   for="cono1">Aanvullende informatie / omschrijving</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control"
+                          name="_task_Description"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="border-top">
+                    <div class="card-body">
+                      <button type="submit" class="btn btn-primary" name="_submit_Task">
+                        Verzend
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
+              <!-- card -->
+
+              <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Huidige aanvragen</h4><br>
@@ -246,58 +397,6 @@ $_user = $_SESSION["_user"];
                 </div>
               </div>
             </div>
-            <div class="card">
-                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
-                  <div class="card-body">
-                    <h4 class="card-title">Gegevens</h4><br>
-                  <div class="col-lg-6">
-                  
-                  <div class="form-group row">
-                  <label
-                     for="fname">Hoeveel werknemers zijn er nodig</label>
-                      <div class="col-sm-9">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="fname"
-                      placeholder="5, 10, 20"
-                      min="1"
-                      max="20"
-                      name="_task_Force"
-                     />
-                   </div>
-                 </div>          
-               <label>Datum werkzaamheden</label>
-                  <div class="input-group">
-                    <input
-                      type="date"
-                      class="form-control mydatepicker"
-                      placeholder="mm/dd/yyyy"
-                      min="<?= date('Y-m-d'); ?>"
-                      name="_task_Date"
-                    />
-                  </div>
-                </div><br>
-                <div class="form-group row">
-                 <label
-                   for="cono1">Aanvullende informatie / omschrijving</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control"
-                          name="_task_Description"></textarea>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="border-top">
-                    <div class="card-body">
-                      <button type="submit" class="btn btn-primary" name="_submit_Task">
-                        Verzend
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              <!-- card -->
 
             </div>
 
