@@ -42,7 +42,6 @@ if(isset($_POST['_Employee_Loginform_Submit']))
                 # code...
                 break;
         }
-        
         // Sla de gebruiker op in een sessie
         $_SESSION['_user'] = $_user;
         
