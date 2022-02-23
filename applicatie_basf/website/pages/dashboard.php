@@ -148,7 +148,7 @@ $_user = $_SESSION["_user"];
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Materialen</div>
+              <div class="box-topic">Aantal Materialen</div>
               <div class="number">7</div>
               <div class="indicator">
               </div>
