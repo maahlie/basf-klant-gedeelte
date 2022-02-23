@@ -316,37 +316,3 @@ $_user = $_SESSION["_user"];
 </body>
 
 </html>
-
-<!-- <section class="body_section">
-          <div class="body_section_one"><center><h1 style="color: white; margin-top: 20%;">Meldingen</h1></center></div>
-          <div class="body_section_two"><center><h1 style="color: white; margin-top: 20%;">Het weer</h1></center></div>
-          <div class="body_section_three"><center><h1 style="color: white; margin-top: 20%;">Misschien kalender</h1></center></div>
-          <div class="body_section_four"><center><h1 style="color: white; margin-top: 20%;">Iets</h1></center></div>
-        </section>
-        <style>
-          *{
-            margin: 0%;
-            padding: 0%;
-          }
-          .body_section{
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-          }
-          .body_section div{
-            height: 50vh;
-            width: 100%;
-          }
-          .body_section_one{
-            background-color: blue;
-          }
-          .body_section_two{
-            background-color: rebeccapurple;
-          }
-          .body_section_three{
-            background-color: yellowgreen;
-            
-          }
-          .body_section_four{
-            background-color: gray;
-          }
-        </style> -->
