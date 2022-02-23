@@ -397,6 +397,58 @@ $_user = $_SESSION["_user"];
                 </div>
               </div>
             </div>
+            <div class="card">
+                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
+                  <div class="card-body">
+                    <h4 class="card-title">Gegevens</h4><br>
+                  <div class="col-lg-6">
+                  
+                  <div class="form-group row">
+                  <label
+                     for="fname">Hoeveel werknemers zijn er nodig</label>
+                      <div class="col-sm-9">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="fname"
+                      placeholder="5, 10, 20"
+                      min="1"
+                      max="20"
+                      name="_task_Force"
+                     />
+                   </div>
+                 </div>          
+               <label>Datum werkzaamheden</label>
+                  <div class="input-group">
+                    <input
+                      type="date"
+                      class="form-control mydatepicker"
+                      placeholder="mm/dd/yyyy"
+                      min="<?= date('Y-m-d'); ?>"
+                      name="_task_Date"
+                    />
+                  </div>
+                </div><br>
+                <div class="form-group row">
+                 <label
+                   for="cono1">Aanvullende informatie / omschrijving</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control"
+                          name="_task_Description"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="border-top">
+                    <div class="card-body">
+                      <button type="submit" class="btn btn-primary" name="_submit_Task">
+                        Verzend
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- card -->
 
             </div>
 
