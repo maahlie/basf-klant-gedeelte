@@ -1,0 +1,81 @@
+.errorstyle {
+  color: rgb(168, 0, 0);
+  font-weight: bold;
+  font-size: 13px;
+}
+.errorbox {
+  background-color: rgb(255, 145, 145);
+  border: 1px solid rgb(168, 0, 0);
+  border-radius: 3px;
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  margin-left: 7%;
+  margin-bottom: 5%;
+}
+.no-a-style {
+  color: inherit;
+}
+.noscroll {
+  overflow: hidden;
+}
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid gray;
+}
+.tg td {
+  border-top: black 1px solid;
+  border-bottom: black 1px solid;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  padding: 1px 1px;
+  word-break: normal;
+}
+.tg th {
+  border: 1px solid black;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
+}
+.tg ._Table_Gray {
+  background-color: #c0c0c0;
+  border-color: inherit;
+  text-align: center;
+  vertical-align: top;
+}
+.tg ._Table_White {
+  background-color: #fff;
+  border-color: inherit;
+  text-align: left;
+  vertical-align: top;
+}
+.tg ._Table_Lightgray {
+  background-color: #e7e7e7;
+  border-color: inherit;
+  text-align: left;
+  vertical-align: top;
+}
+.tg ._Table_Selected {
+  background-color: #aaaaaa;
+  border-color: inherit;
+  text-align: center;
+  vertical-align: top;
+}
+._Table_Border_Right{
+    border-right: 1px solid gray !important;
+}
+._Table_Department{
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  border: 1px solid black;
+}
+._Table_Subdepartment{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    border: 1px solid black;
+}
