@@ -33,6 +33,15 @@ class Customer extends UserAccount{
                     ><span class="hide-menu">Werknemers aanvragen</span></a
                 >
             </li>
+            <li class="sidebar-item">
+                <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="material.php"
+                    aria-expanded="false"
+                    ><i class="mdi mdi-account-multiple-plus"></i
+                    ><span class="hide-menu">Materiaal aanvragen</span></a
+                >
+            </li>
 
         <?php
 
