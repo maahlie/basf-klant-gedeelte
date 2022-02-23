@@ -26,6 +26,7 @@ $_user = $_SESSION["_user"];
   <link href="../../dist/css/style.min.css" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
   <link rel="stylesheet" href="../../dist/css/klant_dashboard.css">
 </head>
 
@@ -137,7 +138,7 @@ $_user = $_SESSION["_user"];
       <!-- ============================================================== -->
       <div class="home-content">
         <div class="overview-boxes">
-          <div class="box">
+          <!-- <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal bussen</div>
               <div class="number">4</div>
@@ -145,7 +146,7 @@ $_user = $_SESSION["_user"];
               </div>
             </div>
             <i class='fas fa-bus cart'></i>
-          </div>
+          </div> -->
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal Materialen</div>
@@ -157,12 +158,21 @@ $_user = $_SESSION["_user"];
           </div>
           <div class="box">
             <div class="right-side">
+              <div class="box-topic">Week nummer</div>
+              <div class="number" id="week"></div>
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar-week cart'></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
               <div class="box-topic">Vandaag</div>
               <div class="number" id="datum"></div>
               <div class="indicator">
               </div>
             </div>
-            <i class='fa fa-calendar cart three'></i>
+            <i class='fa fa-calendar-day cart three'></i>
           </div>
           <div class="box">
             <div class="right-side">
