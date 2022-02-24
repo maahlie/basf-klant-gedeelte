@@ -397,7 +397,7 @@ $_user = $_SESSION["_user"];
                 </div>
               </div>
             </div>
-            <div class="card">
+            <!-- <div class="card">
                 <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
                   <div class="card-body">
                     <h4 class="card-title">Gegevens</h4><br>
@@ -447,7 +447,7 @@ $_user = $_SESSION["_user"];
                     </div>
                   </div>
                 </form>
-              </div>
+              </div> -->
               <!-- card -->
 
             </div>
