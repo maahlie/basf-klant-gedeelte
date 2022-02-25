@@ -91,6 +91,9 @@ $_user = $_SESSION["_user"];
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
+                <!-- <li>
+                <i class="nav-link fas fa-caret-down fa-3x"></i>
+                </li> -->
             </li>
 
           </ul>
@@ -138,7 +141,7 @@ $_user = $_SESSION["_user"];
       <!-- ============================================================== -->
       <div class="home-content">
         <div class="overview-boxes">
-          <!-- <div class="box">
+          <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal bussen</div>
               <div class="number">4</div>
@@ -146,7 +149,7 @@ $_user = $_SESSION["_user"];
               </div>
             </div>
             <i class='fas fa-bus cart'></i>
-          </div> -->
+          </div>
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal Materialen</div>
@@ -158,6 +161,15 @@ $_user = $_SESSION["_user"];
           </div>
           <div class="box">
             <div class="right-side">
+              <div class="box-topic">De start tijd</div>
+              <div class="number">12:30</div>
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='bx bxs-timer cart three'></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
               <div class="box-topic">Week nummer</div>
               <div class="number" id="week"></div>
               <div class="indicator">
@@ -165,26 +177,49 @@ $_user = $_SESSION["_user"];
             </div>
             <i class='fas fa-calendar-week cart'></i>
           </div>
-          <div class="box">
+          <div class="box meerboxs">
             <div class="right-side">
-              <div class="box-topic">Vandaag</div>
-              <div class="number" id="datum"></div>
+              <div class="box-topic">De huidige datum</div>
+              <div class="number" id="huidige_dag"></div>
               <div class="indicator">
               </div>
             </div>
-            <i class='fa fa-calendar-day cart three'></i>
+            <i class='fas fa-calendar-plus cart'></i>
           </div>
-          <div class="box">
+          <div class="box meerboxs">
             <div class="right-side">
-              <div class="box-topic">Tijd</div>
-              <div class="number" id="tijd"></div>
+              <div class="box-topic">De huidige maand</div>
+              <div class="number" id="huidige_maand"></div>
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar-day cart two'></i>
+          </div>
+          <div class="box meerboxs">
+            <div class="right-side">
+              <div class="box-topic">Het huidige jaar</div>
+              <div class="number" id="huidige_jaar"></div>
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar cart'></i>
+          </div>
+          <div class="box meerboxs">
+            <div class="right-side">
+              <div class="box-topic">De huidige tijd</div>
+              <div class="number" id="huidige_tijd"></div>
               <div class="indicator">
               </div>
             </div>
             <i class='bx bxs-time cart four'></i>
           </div>
         </div>
-
+        <!-- ===================================================================================== -->
+        <!-- tussen button  -->
+          <!-- <div class="add-boxs"> -->
+          <button id="add-boxs" onclick="addboxs()">Meer</button>
+          <!-- </div> -->
+        <!-- tussen button  -->
         <div class="sales-boxes">
           <div class="recent-sales box">
             <div class="title">Meldingen</div>

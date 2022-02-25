@@ -13,7 +13,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 20px;
-  margin-bottom: 26px;
+  /* margin-bottom: 26px; */
 }
 .overview-boxes .box{
   display: flex;
@@ -24,6 +24,7 @@
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
 }
 .overview-boxes .box-topic{
   font-size: 20px;
@@ -189,6 +190,40 @@
   font-size: 17px;
   font-weight: 400;
   color: #333;
+}
+#add-boxs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  margin: auto;
+  background-color: #fff;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  margin-bottom: 26px;
+  text-align: center; 
+  font-weight: bold; 
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+#add-boxs:hover, #add-boxs:focus {
+  outline: none;
+}
+.fa-calendar-plus{
+  background-color: #435E55FF !important;
+  color: #D64161FF !important;
+}
+.fa-calendar-day{
+  background-color: #949398FF !important;
+  color: #F4DF4EFF !important;
+}
+.fa-calendar{
+  background-color: #5B84B1FF !important;
+  color: #FC766AFF !important;
+}
+.bxs-time{
+  background-color: #00539CFF !important;
+  color: #EEA47FFF !important;
 }
 /* Responsive Media Query */
 @media (max-width: 1240px) {
