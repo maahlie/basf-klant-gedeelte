@@ -91,7 +91,7 @@ $_user = $_SESSION["_user"];
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
-                <!-- <li>
+              <!-- <li>
                 <i class="nav-link fas fa-caret-down fa-3x"></i>
                 </li> -->
             </li>
@@ -216,102 +216,35 @@ $_user = $_SESSION["_user"];
         </div>
         <!-- ===================================================================================== -->
         <!-- tussen button  -->
-          <!-- <div class="add-boxs"> -->
-          <button id="add-boxs" onclick="addboxs()">Meer</button>
-          <!-- </div> -->
+        <!-- <div class="add-boxs"> -->
+        <button id="add-boxs" onclick="addboxs()">Meer</button>
+        <!-- </div> -->
         <!-- tussen button  -->
         <div class="sales-boxes">
+          <!-- =============================================================================== -->
           <div class="recent-sales box">
-            <div class="title">Meldingen</div>
-            <div class="sales-details">
-              <!-- ============================================== -->
+            <!-- <div class="title">Meldingen</div> -->
+            <!-- <div class="sales-details">
               <section>
                 <div class="square_box box_three"></div>
                 <div class="square_box box_four"></div>
                 <div class="container mt-5">
-                  <div class="row">
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert" style="left: 10px;">
-									<span aria-hidden="true"><a>
-                    <i class="fa fa-times greencross"></i>
-                    </a></span>
-									<span class="sr-only">Close</span> 
-								</button> -->
-                        <i class="start-icon far fa-check-circle faa-tada animated"></i>
-                        <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times blue-cross"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-                        <strong class="font__weight-semibold">Heads up!</strong> This alert needs your attention, but it's not super important.
-                      </div>
-
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times warning"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-                        <strong class="font__weight-semibold">Warning!</strong> Better check yourself, you're not looking too good.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times danger "></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-                        <strong class="font__weight-semibold">Oh snap!</strong> Change a few things up and try submitting again.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span  aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon fa fa-thumbs-up faa-bounce animated"></i>
-                        <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
-                      </div>
-
-                    </div>
-
-                  </div>
+                  <div class="row"> -->
+            <iframe class="title" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
+            <!--  </div>
                 </div>
               </section>
-              <!-- ============================================== -->
-            </div>
-            <!-- <div class="button">
-              <a href="#">Alles zien</a>
             </div> -->
           </div>
+          <!-- ================================================================================ -->
           <!-- <div class="top-sales box" style="min-height: 65vh;"> -->
           <!-- <div class="title">Het weer vandaag</div> -->
-          <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/nunhem_nederland_2749759_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+          <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/roermond_nederland_2748000_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
           <!-- </div> -->
-          <!-- ==============================================      roermond_nederland_2748000 -->
+          <!-- ==============================================      roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
         </div>
       </div>
+
       <!-- ============================================================== -->
       <!-- Main -->
       <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
