@@ -18,6 +18,8 @@ $_user = $_SESSION["_user"];
   <meta name="keywords" />
   <meta name="description" />
   <meta name="robots" content="noindex,nofollow" />
+  <!-- Site title -->
+  <title>Dashboard</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/basf_icon.png" />
   <!-- Custom CSS -->

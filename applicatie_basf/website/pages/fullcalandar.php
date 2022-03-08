@@ -1,6 +1,8 @@
 <?php
-//index.php
 
+include_once("calandar-class.php");
+
+$Calandar = new Calandar();
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,7 +24,7 @@
      center:'title',
      right:'month,agendaWeek,agendaDay'
     },
-    events: 'load.php',
+    events: <?php $Calandar -> Load()?>,
     selectable:true,
     selectHelper:true,
     select: function(start, end, allDay)
@@ -32,13 +34,15 @@
      {
       var start = $.fullCalendar.formatDate(start, "Y-MM-DD HH:mm:ss");
       var end = $.fullCalendar.formatDate(end, "Y-MM-DD HH:mm:ss");
+      var Insert = <?php $Calandar -> Insert(); ?>
       $.ajax({
-       url:"insert.php",
+       url: Insert,
        type:"POST",
        data:{title:title, start:start, end:end},
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
+        location.reload(true);
         alert("Succesvol toegevoegd");
        }
       })
@@ -51,12 +55,14 @@
      var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
      var title = event.title;
      var id = event.id;
+     var Update = <?php $Calandar -> Update(); ?>
      $.ajax({
-      url:"update.php",
+      url: Update,
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function(){
        calendar.fullCalendar('refetchEvents');
+       location.reload(true);
        alert('Evenement bijwerken');
       }
      })
@@ -68,13 +74,15 @@
      var end = $.fullCalendar.formatDate(event.end, "Y-MM-DD HH:mm:ss");
      var title = event.title;
      var id = event.id;
+     var Update = <?php $Calandar -> Update(); ?>
      $.ajax({
-      url:"update.php",
+      url: Update,
       type:"POST",
       data:{title:title, start:start, end:end, id:id},
       success:function()
       {
        calendar.fullCalendar('refetchEvents');
+       location.reload(true);
        alert("Evenement bijgewerkt");
       }
      });
@@ -85,13 +93,15 @@
      if(confirm("Weet je zeker dat je het wilt verwijderen?"))
      {
       var id = event.id;
+      var Delete = <?php $Calandar -> Delete(); ?>
       $.ajax({
-       url:"delete.php",
+       url: Delete,
        type:"POST",
        data:{id:id},
        success:function()
        {
         calendar.fullCalendar('refetchEvents');
+        location.reload(true);
         alert("Evenement verwijderd");
        }
       })
@@ -104,9 +114,6 @@
   </script>
  </head>
  <body>
-  <br />
-  <!-- <h2 align="center"><a href="#">Jquery Fullcalandar Integration with PHP and Mysql</a></h2> -->
-  <br />
   <div class="container">
    <div id="calendar"></div>
   </div>

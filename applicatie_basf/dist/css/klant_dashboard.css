@@ -115,9 +115,8 @@
   /* margin-bottom: 10px; */
   width: 100%;
   min-height: 100% !important;
-  margin: 0%;
-  padding: 0px;
-  overflow:hidden;
+  /* padding-bottom: 1%; */
+  padding-top: 1%;
 }
 .title::-webkit-scrollbar {
   display: none;
@@ -235,12 +234,10 @@
 }
 /* Responsive Media Query */
 @media (max-width: 1240px) {
-  /* .sidebar{
-    width: 60px;
+  .sales-boxes{
+    margin-right: 5%;
   }
-  .sidebar.active{
-    width: 220px;
-  } */
+  
   .home-section{
     width: calc(100% - 60px);
     left: 60px;
@@ -287,6 +284,9 @@
   }
 }
 @media (max-width: 700px) {
+  #add-boxs{
+    width: 90%;
+  }
   nav .sidebar-button .dashboard,
   nav .profile-details .admin_name,
   nav .profile-details i{
