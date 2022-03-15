@@ -1,29 +1,30 @@
-//date
+
+//Date, month and day
 
 var vandaag = new Date();
 var maanden = new Array("Januari", 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December');
-document.getElementById("huidige_dag").innerHTML = vandaag.getDate();
-document.getElementById("huidige_maand").innerHTML = maanden[vandaag.getMonth()];
-document.getElementById("huidige_jaar").innerHTML = vandaag.getFullYear();
+document.getElementById("huidige_dag").innerHTML = vandaag.getDate();  //Print day in this id
+document.getElementById("huidige_maand").innerHTML = maanden[vandaag.getMonth()];  //Print month in this id
+document.getElementById("huidige_jaar").innerHTML = vandaag.getFullYear();  //Print year in this id
 
-// time
+// Time
 
 (function startTime() {
     var d = new Date();
     var n = d.toLocaleTimeString();
-    document.getElementById("huidige_tijd").innerHTML = n;
+    document.getElementById("huidige_tijd").innerHTML = n; //Print time in this id
     setTimeout(startTime);
   })();
 
-// week
+// Week
 
 var elm = document.createElement('input')
 elm.type = 'week'
 elm.valueAsDate = new Date()
 var week = elm.value.split('W').pop()
-document.getElementById("week").innerHTML = week;
+document.getElementById("week").innerHTML = week;  //Print week in this id
 
-// add boxs
+// Add boxs and change the localStorage
 
 function addboxs(){
   if(localStorage.getItem("meer") == "ja"){
@@ -40,6 +41,8 @@ function addboxs(){
     document.getElementById("add-boxs").innerHTML = "Minder";
   }
 }
+
+// If localstorage == "ja" add 4 boxs and if it == "nee" remove 4 boxs
 
 if(localStorage.getItem("meer") == "ja"){
   for(i=0; i<4; i++){

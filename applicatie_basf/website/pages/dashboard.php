@@ -140,7 +140,7 @@ $_user = $_SESSION["_user"];
     <div class="page-wrapper">
       <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- Main -->
-      <!-- ============================================================== -->
+      <!-- =======================Div for Boxs=============================== -->
       <div class="home-content">
         <div class="overview-boxes">
           <div class="box">
@@ -173,7 +173,7 @@ $_user = $_SESSION["_user"];
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Week nummer</div>
-              <div class="number" id="week"></div>
+              <div class="number" id="week"></div>  <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -182,7 +182,7 @@ $_user = $_SESSION["_user"];
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige datum</div>
-              <div class="number" id="huidige_dag"></div>
+              <div class="number" id="huidige_dag"></div>  <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -191,7 +191,7 @@ $_user = $_SESSION["_user"];
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige maand</div>
-              <div class="number" id="huidige_maand"></div>
+              <div class="number" id="huidige_maand"></div>  <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -200,7 +200,7 @@ $_user = $_SESSION["_user"];
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">Het huidige jaar</div>
-              <div class="number" id="huidige_jaar"></div>
+              <div class="number" id="huidige_jaar"></div>  <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -209,47 +209,29 @@ $_user = $_SESSION["_user"];
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige tijd</div>
-              <div class="number" id="huidige_tijd"></div>
+              <div class="number" id="huidige_tijd"></div>  <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
             <i class='bx bxs-time cart four'></i>
           </div>
         </div>
-        <!-- ===================================================================================== -->
+        <!-- =======================Button for More boxs=============================== -->
         <!-- tussen button  -->
-        <!-- <div class="add-boxs"> -->
         <button id="add-boxs" onclick="addboxs()">Meer</button>
-        <!-- </div> -->
         <!-- tussen button  -->
         <div class="sales-boxes">
-          <!-- =============================================================================== -->
-          <div class="recent-sales box">
-            <!-- <div class="title">Meldingen</div> -->
-            <!-- <div class="sales-details">
-              <section>
-                <div class="square_box box_three"></div>
-                <div class="square_box box_four"></div>
-                <div class="container mt-5">
-                  <div class="row"> -->
+          <!-- =======================Div for calandar=============================== -->
+          <div class="recent-sales box"> 
             <iframe class="title" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
-            <!--  </div>
-                </div>
-              </section>
-            </div> -->
           </div>
-          <!-- ================================================================================ -->
-          <!-- <div class="top-sales box" style="min-height: 65vh;"> -->
-          <!-- <div class="title">Het weer vandaag</div> -->
+          <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/roermond_nederland_2748000_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-          <!-- </div> -->
-          <!-- ==============================================      roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
+          <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
         </div>
       </div>
-
       <!-- ============================================================== -->
       <!-- Main -->
-      <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- ============================================================== -->
       <!-- footer -->
       <!-- ============================================================== -->
