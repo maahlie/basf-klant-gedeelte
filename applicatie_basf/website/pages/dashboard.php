@@ -231,21 +231,29 @@ $_user = $_SESSION["_user"];
         <!-- //////////////////////////////Proberen//////////////////////////////// -->
         <div class="sales-boxes">
         <div class="top-sales box">
-          <div class="title">Recent gevraagde verlof</div>
+          <div class="title">Materialen lijst</div>
           <div class="sales-details">
             <ul class="details">
-              <li class="topic">ID</li>
-              <li>Test</li>
+              <li class="topic">Naam</li>
+              <li>Keramiek</li>
+              <li>Metalen</li>
+              <li>Kunststoffen</li>
+              <li>Hout</li>
+              <li>Textiel</li>
             </ul>
             <ul class="details">
-              <li class="topic">Toestand</li>
-              <li>Test</li>
+              <li class="topic">Aantal</li>
+              <li>9</li>
+              <li>3</li>
+              <li>1</li>
+              <li>7</li>
+              <li>5</li>
             </ul>
           </div>
         </div>
         <div class="recent-sales box darkmode">
-          <div class="title">Recente werknemer</div>
-          <div class="sales-details">
+          <div class="title">Bijzonder gebeurtenis</div>
+          <!-- <div class="sales-details">
             <ul class="details">
               <li class="topic">ID</li>
               <li>Test</li>
@@ -262,10 +270,7 @@ $_user = $_SESSION["_user"];
               <li class="topic">Operator</li>
               <li>Test</li>
             </ul>
-          </div>
-          <div class="button">
-            <a href="werknemers">Alles zien</a>
-          </div>
+          </div> -->
         </div>
       </div>
       </div>
