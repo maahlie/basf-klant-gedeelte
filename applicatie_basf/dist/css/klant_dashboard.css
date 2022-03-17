@@ -145,8 +145,12 @@
   text-decoration: underline;
 }
 .calandar{
+  /* font-size: 24px; */
+  /* font-weight: 500; */
+  /* margin-bottom: 10px; */
   width: 100%;
   min-height: 100% !important;
+  /* padding-bottom: 1%; */
   padding-top: 1%;
   background-color: var(--red);
 }
@@ -300,7 +304,7 @@
     left: 220px;
   } */
   .calandar{
-    height: 596px;
+      height: 396px;
   }
 }
 @media (max-width: 1150px) {
