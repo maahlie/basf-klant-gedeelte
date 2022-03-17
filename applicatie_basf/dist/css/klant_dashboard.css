@@ -6,15 +6,19 @@
   --black: black;
   --blue: #fff;
   --yellow: #fff;
+  --yellow2: rgb(223, 200, 200);
   --red: #fff;
+  --grey: #fff;
 }
 .dark-theme{
   --yellow: rgb(216, 191, 30);
+  --yellow2: rgb(255, 221, 0);
   --red: rgb(187, 40, 40);
   --blue: rgb(54, 54, 122);
   --white: #191c24;
   --page: black;
   --black: white;
+  --grey: #392b3a;
 }
 .page-wrapper{
   min-height: 91.0vh;
@@ -130,12 +134,19 @@
   justify-content: space-between;
 }
 .sales-boxes .box .title{
-  /* font-size: 24px; */
-  /* font-weight: 500; */
+  font-size: 25px;
+  font-weight: bold;
   /* margin-bottom: 10px; */
+  /* padding-bottom: 1%; */
+}
+.sales-boxes .box .topic{
+  font-size: 15px !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+.calandar{
   width: 100%;
   min-height: 100% !important;
-  /* padding-bottom: 1%; */
   padding-top: 1%;
   background-color: var(--red);
 }
@@ -188,9 +199,10 @@
 /* Right box */
 .home-content .sales-boxes .top-sales{
   width: 45%;
-  background: #fff;
+  background: var(--grey);
+  color: var(--black);
   /* padding: 20px 30px; */
-  margin: 0 20px 20px 0;
+  margin: 0 20px 20px 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -234,7 +246,11 @@
   font-weight: bold; 
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-#add-boxs:hover, #add-boxs:focus {
+#add-boxs:hover{
+  outline: none;
+  background-color: var(--yellow2);
+}
+#add-boxs:focus{
   outline: none;
 }
 .fa-calendar-plus{
@@ -255,6 +271,10 @@
 }
 #sunmoon{
   font-size: 1.4rem;
+}
+.darkmode{
+  background-color: var(--grey) !important;
+  color: var(--black) !important;
 }
 /* Responsive Media Query */
 @media (max-width: 1240px) {
@@ -279,8 +299,8 @@
     width: calc(100% - 220px);
     left: 220px;
   } */
-  .sales-boxes .box .title{
-    height: 396px;
+  .calandar{
+    height: 596px;
   }
 }
 @media (max-width: 1150px) {
@@ -293,7 +313,8 @@
     margin-bottom: 30px;
   }
   .home-content .sales-boxes .top-sales{
-    margin: 0;
+    /* margin: 0; */
+    margin-left: 20px;
   }
   /* ====================== */
   .weather{

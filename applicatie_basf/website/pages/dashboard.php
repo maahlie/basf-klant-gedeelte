@@ -222,12 +222,52 @@ $_user = $_SESSION["_user"];
         <div class="sales-boxes">
           <!-- =======================Div for calandar=============================== -->
           <div class="recent-sales box"> 
-            <iframe class="title" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
+            <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
           <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/roermond_nederland_2748000_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
           <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
         </div>
+        <!-- //////////////////////////////Proberen//////////////////////////////// -->
+        <div class="sales-boxes">
+        <div class="top-sales box">
+          <div class="title">Recent gevraagde verlof</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">ID</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Toestand</li>
+              <li>Test</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recent-sales box darkmode">
+          <div class="title">Recente werknemer</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">ID</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Naam</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Rol</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Operator</li>
+              <li>Test</li>
+            </ul>
+          </div>
+          <div class="button">
+            <a href="werknemers">Alles zien</a>
+          </div>
+        </div>
+      </div>
       </div>
       <!-- ============================================================== -->
       <!-- Main -->
