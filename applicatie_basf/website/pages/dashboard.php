@@ -93,11 +93,10 @@ $_user = $_SESSION["_user"];
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
-              <!-- <li>
-                <i class="nav-link fas fa-caret-down fa-3x"></i>
-                </li> -->
+              <li class="nav-item d-none d-lg-block">
+              <a class="nav-link" id="change"><i class="mdi mdi-white-balance-sunny" id="sunmoon"></i></a>
+                </li>
             </li>
-
           </ul>
           <!-- Right side toggle and nav items -->
           <!-- ============================================================== -->

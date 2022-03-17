@@ -1,7 +1,24 @@
 /* Googlefont Poppins CDN Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+:root{
+  --white: #fff;
+  --page: #eeeeee;
+  --black: black;
+  --blue: #fff;
+  --yellow: #fff;
+  --red: #fff;
+}
+.dark-theme{
+  --yellow: rgb(216, 191, 30);
+  --red: rgb(187, 40, 40);
+  --blue: rgb(54, 54, 122);
+  --white: #191c24;
+  --page: black;
+  --black: white;
+}
 .page-wrapper{
   min-height: 91.0vh;
+  background-color: var(--page);
 }
 .home-content{
   position: relative;
@@ -20,7 +37,9 @@
   align-items: center;
   justify-content: center;
   width: calc(100% / 4 - 15px);
-  background: #fff;
+  /* background: #fff; */
+  background: var(--blue);
+  color: var(--black);
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
@@ -95,7 +114,8 @@
 /* left box */
 .home-content .sales-boxes .recent-sales{
   width: 65%;
-  background: #fff;
+  /* background: #fff; */
+  background-color: var(--red);
   /* padding: 20px 30px; */
   margin: 0 20px 20px 20px;
   border-radius: 12px;
@@ -117,6 +137,7 @@
   min-height: 100% !important;
   /* padding-bottom: 1%; */
   padding-top: 1%;
+  background-color: var(--red);
 }
 .title::-webkit-scrollbar {
   display: none;
@@ -204,7 +225,7 @@
   justify-content: center;
   width: 97%;
   margin: auto;
-  background-color: #fff;
+  background-color: var(--yellow);
   border: none;
   outline: none;
   border-radius: 7px;
@@ -231,6 +252,9 @@
 .bxs-time{
   background-color: #00539CFF !important;
   color: #EEA47FFF !important;
+}
+#sunmoon{
+  font-size: 1.4rem;
 }
 /* Responsive Media Query */
 @media (max-width: 1240px) {

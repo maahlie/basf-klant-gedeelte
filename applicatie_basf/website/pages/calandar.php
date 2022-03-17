@@ -96,9 +96,6 @@ $_user = $_SESSION["_user"];
                                     <a class="dropdown-item" href="#">Something else here</a>
                                 </li>
                             </ul>
-                            <!-- <li>
-                <i class="nav-link fas fa-caret-down fa-3x"></i>
-                </li> -->
                         </li>
 
                     </ul>
