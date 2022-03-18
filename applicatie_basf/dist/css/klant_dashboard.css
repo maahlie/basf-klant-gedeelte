@@ -34,7 +34,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 20px;
-  /* margin-bottom: 26px; */
+  /* margin-bottom: 0%; */
 }
 .overview-boxes .box{
   display: flex;
@@ -280,7 +280,19 @@
   background-color: var(--grey) !important;
   color: var(--black) !important;
 }
+.news{
+  width: 97%;
+  height: 93vh;
+  margin-left: 1.5%;
+  overflow: hidden;
+  border-radius: 12px;
+}
 /* Responsive Media Query */
+/* @media (max-width: 2900px) {
+  .calandar{
+    height: 596px;
+}
+} */
 @media (max-width: 1240px) {
   .sales-boxes{
     margin-right: 5%;

@@ -61,7 +61,9 @@ if(localStorage.getItem("meer") == "ja"){
 var change = document.getElementById("change");
 change.onclick = function(){
   var sunmoon = document.getElementById("sunmoon");
+  var iframe = document.getElementById('news');
   document.body.classList.toggle("dark-theme");
+  iframe.src = iframe.src; // refresh iframe on button click
   if(document.body.classList.contains("dark-theme")){
     sunmoon.classList.remove("mdi-white-balance-sunny");
     sunmoon.classList.add("mdi-theme-light-dark");

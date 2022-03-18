@@ -229,7 +229,7 @@ $_user = $_SESSION["_user"];
           <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
         </div>
         <!-- //////////////////////////////Proberen//////////////////////////////// -->
-        <div class="sales-boxes">
+        <!-- <div class="sales-boxes">
         <div class="top-sales box">
           <div class="title">Materialen lijst</div>
           <div class="sales-details">
@@ -253,7 +253,7 @@ $_user = $_SESSION["_user"];
         </div>
         <div class="recent-sales box darkmode">
           <div class="title">Bijzonder gebeurtenis</div>
-          <!-- <div class="sales-details">
+          <div class="sales-details">
             <ul class="details">
               <li class="topic">ID</li>
               <li>Test</li>
@@ -270,11 +270,14 @@ $_user = $_SESSION["_user"];
               <li class="topic">Operator</li>
               <li>Test</li>
             </ul>
-          </div> -->
+          </div>
         </div>
+      </div> -->
+      <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
       </div>
-      </div>
-      <!-- ============================================================== -->
+      <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
+      <!-- <iframe src="news.php" frameborder="0" class="news" scrolling="no"></iframe> -->
+      <!-- ==============================================================-->
       <!-- Main -->
       <!-- ============================================================== -->
       <!-- footer -->
