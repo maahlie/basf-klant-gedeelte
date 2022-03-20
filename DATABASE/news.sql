@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 18 mrt 2022 om 18:29
+-- Gegenereerd op: 20 mrt 2022 om 20:16
 -- Serverversie: 10.4.18-MariaDB
 -- PHP-versie: 8.0.3
 
@@ -29,9 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `news` (
   `id` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `day` int(11) NOT NULL,
+  `month` int(11) NOT NULL,
   `title` varchar(225) NOT NULL,
-  `text` varchar(225) NOT NULL
+  `text` varchar(225) NOT NULL,
+  `image` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
