@@ -2,10 +2,10 @@
 
 class DataBase{
     // --- Fields ---
-    private $_server = "localhost";
-    private $_user = "root";
-    private $_pass = "";
-    private $_database = "basf_db";
+    private $_server = "10.35.2.150";
+    private $_user = "test";
+    private $_pass = "test";
+    private $_database = "basfdb";
     private $_conn;
 
     // --- Constructor ---

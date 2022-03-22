@@ -37,6 +37,44 @@ $_user = $_SESSION["_user"];
       href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
       rel="stylesheet"
     />
+    <script>
+
+      function submitUpdate() {
+        let columnTable = document.getElementsByClassName("editTd");
+        let columnTxb = document.getElementsByClassName("updateTxb");
+
+        for (let i = 0; i < columnTable.length; i++) {
+          columnTxb[i].value = columnTable[i].innerHTML;
+        }
+      }
+
+      function hideForm() {
+
+        let column = document.getElementsByClassName("editTd");
+        let confirm_btn = document.getElementById("confirm_btn");
+        let edit_btn = document.getElementById("edit_btn");
+        let thing = document.getElementById("editing");
+
+        for (let i = 0; i < column.length; i++) {
+          if(column[i].contentEditable  == 'false')
+          {
+            column[i].contentEditable  = 'true';
+            confirm_btn.style.display = 'inline';
+            edit_btn.innerHTML = "Stop";
+            edit_btn.style.color = "red";
+            thing.style.display = 'inline';
+          }else{
+            column[i].contentEditable  = 'false';
+            confirm_btn.style.display = 'none';
+            edit_btn.innerHTML = "Bewerk";
+            edit_btn.style.color = "";
+            thing.style.display = 'none';
+          }        
+        }
+
+
+      }
+    </script>
   </head>
 
   <body>
@@ -277,7 +315,7 @@ $_user = $_SESSION["_user"];
                       id="fname"
                       placeholder="5, 10, 20"
                       min="1"
-                      max="20"
+                      max="100"
                       name="_task_Force"
                      />
                    </div>
@@ -297,6 +335,17 @@ $_user = $_SESSION["_user"];
                   <div class="input-group">
                   <input list="work" name="_task_work" class="form-control" placeholder="...">
                     <datalist id="work">
+                      <?php
+                        $db = new DataBase();
+                        $list = $db->getData("workCompName", "workcomp");
+
+                        $row = $list->fetch_all();
+                        
+                        for($i=0; $i<$list->num_rows; $i++)
+                        {
+                          echo '<option value=' . $row[$i][0] . '>';
+                        }
+                      ?>
                     </datalist>
                   </div><br>
                <label>Datum werkzaamheden</label>
@@ -322,7 +371,7 @@ $_user = $_SESSION["_user"];
                   </div>
                   <div class="border-top">
                     <div class="card-body">
-                      <button type="submit" class="btn btn-primary" name="_submit_Task">
+                      <button type="submit" class="btn btn-primary" name="_submit_Request">
                         Verzend
                       </button>
                     </div>
@@ -336,9 +385,13 @@ $_user = $_SESSION["_user"];
               <div class="col-md-12">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Huidige aanvragen</h4><br>
+                  <h4 class="card-title">Huidige aanvragen <span id="editing" style="display: none; color:darkblue;">bewerken</span></h4>
+                  <button onclick="hideForm();" class="btn">
+                  <h7 id="edit_btn" class="card-title">Bewerk</h7>
+                  </button>
+                  <form>
                 <div class="col-lg-6">
-                <div class="table-responsive">   
+                <div class="table-responsive">   <br>
                     <table
                       id="zero_config"
                       class="table table-striped table-bordered"
@@ -347,6 +400,8 @@ $_user = $_SESSION["_user"];
                         <tr>
                           <th>Datum</th>
                           <th>Personeel</th>
+                          <th>Gewas</th>
+                          <th>Werkzaamheid</th>
                           <th>Omschrijving</th>
                           <th></th>
                         </tr>
@@ -362,6 +417,8 @@ $_user = $_SESSION["_user"];
                             $_date = $_res["date"];
                             $_force = $_res["reqStaff"];
                             $_desrciption = $_res["descr"];
+                            $_crop = $_res["crop"];
+                            $_work = $_res["workCompName"];
 
                             $_date_time = strtotime($_date);
 														// Vervorm de Unix Epoch (1 Jan 1970) tot de boeking datum om in dagen
@@ -370,12 +427,18 @@ $_user = $_SESSION["_user"];
                             if (($_date_time - $_now) > 0) {
                               echo"
                               <tr>
-                                <td>". $_date. "</td>
-                                <td>". $_force. "</td>
-                                <td>". $_desrciption. "</td>
+                              <form action='../planning/request-employees.php' method='post'>  
+                                <td class='editTd' contenteditable='false'>". $_date. "</td>        <input type='hidden' class='updateTxb' id='_date' name='_date' value=''>
+                                <td class='editTd' contenteditable='false'>". $_force. "</td>       <input type='hidden' class='updateTxb' id='_force' name='_force' value=''>
+                                <td class='editTd' contenteditable='false'>". $_crop. "</td>        <input type='hidden' class='updateTxb' id='_crop' name='_crop' value=''>
+                                <td class='editTd' contenteditable='false'>". $_work. "</td>        <input type='hidden' class='updateTxb' id='_work' name='_work' value=''>
+                                <td class='editTd' contenteditable='false'>". $_desrciption. "</td> <input type='hidden' class='updateTxb' id='_desrciption' name='_desrciption' value=''>
                                 <td>
-                                  <form action='../planning/request-employees.php' method='post'>  
-                                    <button type='submit' class='btn btn-danger' name='_delete_Task' value='". $_res["taskID"]. "' onClick=\"javascript: return confirm('Bevestig verwijdering');\"><i class='fas fa-trash'></i></button>
+                                <button type='submit' class='btn' id='confirm_btn' style='display: none; color:green;' value='". $_res["taskID"]. "' name='_confirm_change' onclick='submitUpdate();'>Bevestig</button>
+                                </form>
+
+                                    <form action='../planning/request-employees.php' method='post'>  
+                                      <button type='submit' class='btn btn-danger' name='_delete_Task' value='". $_res["taskID"]. "' onClick=\"javascript: return confirm('Bevestig verwijdering');\"><i class='fas fa-trash'></i></button>
                                   </form>
                                 </td>
                               </tr>
@@ -386,8 +449,10 @@ $_user = $_SESSION["_user"];
                       </tbody>
                       <tfoot>
                         <tr>
-                          <th>Datum</th>
+                        <th>Datum</th>
                           <th>Personeel</th>
+                          <th>Gewas</th>
+                          <th>Werkzaamheid</th>
                           <th>Omschrijving</th>
                           <th></th>
                         </tr>
@@ -397,58 +462,6 @@ $_user = $_SESSION["_user"];
                 </div>
               </div>
             </div>
-            <!-- <div class="card">
-                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
-                  <div class="card-body">
-                    <h4 class="card-title">Gegevens</h4><br>
-                  <div class="col-lg-6">
-                  
-                  <div class="form-group row">
-                  <label
-                     for="fname">Hoeveel werknemers zijn er nodig</label>
-                      <div class="col-sm-9">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="fname"
-                      placeholder="5, 10, 20"
-                      min="1"
-                      max="20"
-                      name="_task_Force"
-                     />
-                   </div>
-                 </div>          
-               <label>Datum werkzaamheden</label>
-                  <div class="input-group">
-                    <input
-                      type="date"
-                      class="form-control mydatepicker"
-                      placeholder="mm/dd/yyyy"
-                      min="<?= date('Y-m-d'); ?>"
-                      name="_task_Date"
-                    />
-                  </div>
-                </div><br>
-                <div class="form-group row">
-                 <label
-                   for="cono1">Aanvullende informatie / omschrijving</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control"
-                          name="_task_Description"></textarea>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="border-top">
-                    <div class="card-body">
-                      <button type="submit" class="btn btn-primary" name="_submit_Task">
-                        Verzend
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div> -->
-              <!-- card -->
 
             </div>
 
