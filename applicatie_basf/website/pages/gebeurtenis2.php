@@ -9,6 +9,6 @@ $_SESSION["news_aantal_keren"] = $k;
 ?>
 
 <script>
-    var iframe = document.getElementById("iframe_calandar_class"); //Get element by id
+    var iframe = document.getElementById("news"); //Get element by id
     iframe.src = iframe.src; // refresh iframe on button click
 </script>

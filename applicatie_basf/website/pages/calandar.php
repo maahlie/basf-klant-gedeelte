@@ -27,10 +27,19 @@ $_user = $_SESSION["_user"];
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
     <style>
+        :root {
+            --color: white;
+        }
+
+        .dark-theme {
+            --color: rgb(187, 40, 40);
+        }
         .iframe_calandar_class {
             padding-top: 8px;
+            display: flex;
             width: 100%;
-            height: 90.5vh;
+            height: 91.5vh;
+            background-color: var(--color);
         }
     </style>
 </head>
@@ -97,7 +106,9 @@ $_user = $_SESSION["_user"];
                                 </li>
                             </ul>
                         </li>
-
+                        <li class="nav-item d-none d-lg-block">
+                            <a class="nav-link" id="change"><i class="mdi mdi-white-balance-sunny" id="sunmoon" style="font-size: 1.4rem;"></i></a>
+                        </li>
                     </ul>
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
@@ -141,7 +152,10 @@ $_user = $_SESSION["_user"];
             <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
             <!-- Main -->
             <iframe src="fullcalandar.php" frameborder="0" class="iframe_calandar_class"></iframe>
-            
+            <div id="news">
+
+            </div>
+
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
             <!-- ============================================================== -->
@@ -174,6 +188,7 @@ $_user = $_SESSION["_user"];
         <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
         <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
         <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+        <script src="../../dist/js/darkmode.js"></script>
 </body>
 
 </html>

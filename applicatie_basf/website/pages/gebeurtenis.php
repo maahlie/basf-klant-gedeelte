@@ -34,7 +34,8 @@ $_user = $_SESSION["_user"];
             width: 100%;
             height: 95vh;
         }
-        #selectoption{
+
+        #selectoption {
             background-color: #141619;
             border: none;
             color: white;
@@ -104,7 +105,9 @@ $_user = $_SESSION["_user"];
                                 </li>
                             </ul>
                         </li>
-
+                        <li class="nav-item d-none d-lg-block">
+                            <a class="nav-link" id="change"><i class="mdi mdi-white-balance-sunny" id="sunmoon" style="font-size: 1.4rem;"></i></a>
+                        </li>
                         <li class="nav-item d-none d-lg-block">
                             <a class="nav-link">
                                 <select id="selectoption" onchange="selectoption()">
@@ -163,7 +166,7 @@ $_user = $_SESSION["_user"];
                 $_SESSION["news_aantal_keren"] = 10;
                 ?>
             </div>
-            <iframe src="news.php" frameborder="0" id="iframe_calandar_class" class="iframe_calandar_class"></iframe>
+            <iframe src="news.php" frameborder="0" id="news" class="iframe_calandar_class"></iframe>
 
             <!-- ============================================================== -->
             <!-- End Page wrapper  -->
@@ -197,12 +200,13 @@ $_user = $_SESSION["_user"];
         <script src="../../assets/libs/flot/jquery.flot.crosshair.js"></script>
         <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
         <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
+        <script src="../../dist/js/darkmode.js"></script>
         <script>
             function selectoption() {
                 var x = document.getElementById("selectoption").value;
 
                 $.ajax({
-                    url: "session.php",
+                    url: "gebeurtenis2.php",
                     method: "POST",
                     data: {
                         id: x

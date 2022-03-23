@@ -324,6 +324,7 @@ $_SESSION["news_aantal_keren"] = 5;
   <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
   <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
   <script src="../../dist/js/klant_dashboard.js"></script>
+  <script src="../../dist/js/darkmode.js"></script>
 </body>
 
 </html>
