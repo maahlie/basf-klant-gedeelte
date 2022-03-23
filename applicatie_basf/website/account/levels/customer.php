@@ -23,6 +23,10 @@ class Customer extends UserAccount
         </li>
 
         <li class="sidebar-item">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="gebeurtenis.php" aria-expanded="false"><i class="mdi mdi-newspaper"></i><span class="hide-menu">Gebeurtenis</span></a>
+        </li>
+
+        <li class="sidebar-item">
             <a href="pages-calendar.php" class="sidebar-link"><i class="mdi mdi-table"></i><span class="hide-menu"> Planning </span></a>
         </li>
         <li class="sidebar-item">

@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+$_SESSION["news_aantal_keren"];
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,27 +28,30 @@
     <div class="news-slider">
       <div class="news-slider__wrp swiper-wrapper">
 
-        <?php 
-        for($i=0; $i<10; $i++){ ?>
-        <div class="news-slider__item swiper-slide">
-          <a href="#" class="news__item">
-            <div class="news-date">
-              <span class="news-date__title"><?php echo $i ?></span>
-              <span class="news-date__txt">May</span>
-            </div>
-            <div class="news__title">
-              Rijden zonder rijbewijs
-            </div>
+        <?php
+        $maanden = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+        for ($i = 0; $i < $_SESSION["news_aantal_keren"]; $i++) { ?>
+          <div class="news-slider__item swiper-slide">
+            <a href="#" class="news__item">
+              <div class="news-date">
+                <span class="news-date__title"><?php echo mt_rand(1, 28); ?></span>
+                <span class="news-date__txt"><?php echo $maanden[array_rand($maanden)] ?></span>
+              </div>
+              <div class="news__title">
+                Kom bij ons werken
+              </div>
 
-            <p class="news__txt">
-            Wanneer u in Nederland de openbare weg op wilt in een gemotoriseerd voertuig, is het hebben van een geldig rijbewijs voor dat type voertuig een keihard vereiste.            </p>
+              <p class="news__txt">
+                Bij BASF zijn we ervan overtuigd dat mensen de sleutel zijn tot ons succes op lange termijn en dat iedereen over talent beschikt. Daarom hebben we u nodig.
+              </p>
 
-            <div class="news__img">
-              <img src="https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt="news">
-            </div>
-          </a>
-        </div>
-          <?php } ?>
+              <div class="news__img">
+                <!-- <img src="https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt="news"> -->
+                <img src="https://dynamicassets.basf.com/is/image/basf/27476_thinkstockphotos-469843461_crop:16x9?dpr=off&fmt=webp&fit=crop%2C1&wid=1280&hei=720" alt="news">
+              </div>
+            </a>
+          </div>
+        <?php } ?>
 
       </div>
 

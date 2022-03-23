@@ -5,6 +5,8 @@ include "../account/account.php";
 session_start();
 
 $_user = $_SESSION["_user"];
+
+$_SESSION["news_aantal_keren"] = 5;
 ?>
 
 <!DOCTYPE html>
@@ -137,11 +139,6 @@ $_user = $_SESSION["_user"];
     <!-- ============================================================== -->
 
     <div class="page-wrapper">
-      <?php 
-      echo date("m"); 
-      echo date("d"); 
-      
-      ?>
       <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- Main -->
       <!-- =======================Div for Boxs=============================== -->
