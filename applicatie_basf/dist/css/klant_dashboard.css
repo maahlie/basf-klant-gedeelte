@@ -1,7 +1,28 @@
 /* Googlefont Poppins CDN Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+:root{
+  --white: #fff;
+  --page: #eeeeee;
+  --black: black;
+  --blue: #fff;
+  --yellow: #fff;
+  --yellow2: rgb(223, 200, 200);
+  --red: #fff;
+  --grey: #fff;
+}
+.dark-theme{
+  --yellow: rgb(216, 191, 30);
+  --yellow2: rgb(255, 221, 0);
+  --red: rgb(187, 40, 40);
+  --blue: rgb(54, 54, 122);
+  --white: #191c24;
+  --page: black;
+  --black: white;
+  --grey: #392b3a;
+}
 .page-wrapper{
   min-height: 91.0vh;
+  background-color: var(--page);
 }
 .home-content{
   position: relative;
@@ -13,17 +34,20 @@
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 0 20px;
-  margin-bottom: 26px;
+  /* margin-bottom: 0%; */
 }
 .overview-boxes .box{
   display: flex;
   align-items: center;
   justify-content: center;
   width: calc(100% / 4 - 15px);
-  background: #fff;
+  /* background: #fff; */
+  background: var(--blue);
+  color: var(--black);
   padding: 15px 14px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
 }
 .overview-boxes .box-topic{
   font-size: 20px;
@@ -94,8 +118,9 @@
 /* left box */
 .home-content .sales-boxes .recent-sales{
   width: 65%;
-  background: #fff;
-  padding: 20px 30px;
+  /* background: #fff; */
+  background-color: var(--red);
+  /* padding: 20px 30px; */
   margin: 0 20px 20px 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -109,9 +134,28 @@
   justify-content: space-between;
 }
 .sales-boxes .box .title{
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 25px;
+  font-weight: bold;
   /* margin-bottom: 10px; */
+  /* padding-bottom: 1%; */
+}
+.sales-boxes .box .topic{
+  font-size: 15px !important;
+  font-weight: bold !important;
+  text-decoration: underline;
+}
+.calandar{
+  /* font-size: 24px; */
+  /* font-weight: 500; */
+  /* margin-bottom: 10px; */
+  width: 100%;
+  min-height: 100% !important;
+  /* padding-bottom: 1%; */
+  padding-top: 1%;
+  background-color: var(--red);
+}
+.title::-webkit-scrollbar {
+  display: none;
 }
 .sales-boxes .sales-details li.topic{
   font-size: 20px;
@@ -159,9 +203,10 @@
 /* Right box */
 .home-content .sales-boxes .top-sales{
   width: 45%;
-  background: #fff;
+  background: var(--grey);
+  color: var(--black);
   /* padding: 20px 30px; */
-  margin: 0 20px 20px 0;
+  margin: 0 20px 20px 20px;
   border-radius: 12px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
@@ -190,14 +235,69 @@
   font-weight: 400;
   color: #333;
 }
+#add-boxs{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 97%;
+  margin: auto;
+  background-color: var(--yellow);
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  margin-bottom: 26px;
+  text-align: center; 
+  font-weight: bold; 
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+#add-boxs:hover{
+  outline: none;
+  background-color: var(--yellow2);
+}
+#add-boxs:focus{
+  outline: none;
+}
+.fa-calendar-plus{
+  background-color: #435E55FF !important;
+  color: #D64161FF !important;
+}
+.fa-calendar-day{
+  background-color: #949398FF !important;
+  color: #F4DF4EFF !important;
+}
+.fa-calendar{
+  background-color: #5B84B1FF !important;
+  color: #FC766AFF !important;
+}
+.bxs-time{
+  background-color: #00539CFF !important;
+  color: #EEA47FFF !important;
+}
+#sunmoon{
+  font-size: 1.4rem;
+}
+.darkmode{
+  background-color: var(--grey) !important;
+  color: var(--black) !important;
+}
+.news{
+  width: 97%;
+  height: 93vh;
+  margin-left: 1.5%;
+  overflow: hidden;
+  border-radius: 12px;
+}
 /* Responsive Media Query */
+/* @media (max-width: 2900px) {
+  .calandar{
+    height: 596px;
+}
+} */
 @media (max-width: 1240px) {
-  /* .sidebar{
-    width: 60px;
+  .sales-boxes{
+    margin-right: 5%;
   }
-  .sidebar.active{
-    width: 220px;
-  } */
+  
   .home-section{
     width: calc(100% - 60px);
     left: 60px;
@@ -215,6 +315,9 @@
     width: calc(100% - 220px);
     left: 220px;
   } */
+  .calandar{
+      height: 396px;
+  }
 }
 @media (max-width: 1150px) {
   .home-content .sales-boxes{
@@ -226,7 +329,8 @@
     margin-bottom: 30px;
   }
   .home-content .sales-boxes .top-sales{
-    margin: 0;
+    /* margin: 0; */
+    margin-left: 20px;
   }
   /* ====================== */
   .weather{
@@ -241,6 +345,9 @@
   }
 }
 @media (max-width: 700px) {
+  #add-boxs{
+    width: 90%;
+  }
   nav .sidebar-button .dashboard,
   nav .profile-details .admin_name,
   nav .profile-details i{

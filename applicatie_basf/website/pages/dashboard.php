@@ -5,6 +5,8 @@ include "../account/account.php";
 session_start();
 
 $_user = $_SESSION["_user"];
+
+$_SESSION["news_aantal_keren"] = 5;
 ?>
 
 <!DOCTYPE html>
@@ -18,6 +20,8 @@ $_user = $_SESSION["_user"];
   <meta name="keywords" />
   <meta name="description" />
   <meta name="robots" content="noindex,nofollow" />
+  <!-- Site title -->
+  <title>Dashboard</title>
   <!-- Favicon icon -->
   <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/basf_icon.png" />
   <!-- Custom CSS -->
@@ -91,8 +95,10 @@ $_user = $_SESSION["_user"];
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
+            <li class="nav-item d-none d-lg-block">
+              <a class="nav-link" id="change"><i class="mdi mdi-white-balance-sunny" id="sunmoon"></i></a>
             </li>
-
+            </li>
           </ul>
           <!-- Right side toggle and nav items -->
           <!-- ============================================================== -->
@@ -133,12 +139,11 @@ $_user = $_SESSION["_user"];
     <!-- ============================================================== -->
 
     <div class="page-wrapper">
-      <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- Main -->
-      <!-- ============================================================== -->
+      <!-- =======================Div for Boxs=============================== -->
       <div class="home-content">
         <div class="overview-boxes">
-          <!-- <div class="box">
+          <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal bussen</div>
               <div class="number">4</div>
@@ -146,7 +151,7 @@ $_user = $_SESSION["_user"];
               </div>
             </div>
             <i class='fas fa-bus cart'></i>
-          </div> -->
+          </div>
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal Materialen</div>
@@ -158,128 +163,123 @@ $_user = $_SESSION["_user"];
           </div>
           <div class="box">
             <div class="right-side">
+              <div class="box-topic">De start tijd</div>
+              <div class="number">12:30</div>
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='bx bxs-timer cart three'></i>
+          </div>
+          <div class="box">
+            <div class="right-side">
               <div class="box-topic">Week nummer</div>
-              <div class="number" id="week"></div>
+              <div class="number" id="week"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
             <i class='fas fa-calendar-week cart'></i>
           </div>
-          <div class="box">
+          <div class="box meerboxs">
             <div class="right-side">
-              <div class="box-topic">Vandaag</div>
-              <div class="number" id="datum"></div>
+              <div class="box-topic">De huidige datum</div>
+              <div class="number" id="huidige_dag"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
-            <i class='fa fa-calendar-day cart three'></i>
+            <i class='fas fa-calendar-plus cart'></i>
           </div>
-          <div class="box">
+          <div class="box meerboxs">
             <div class="right-side">
-              <div class="box-topic">Tijd</div>
-              <div class="number" id="tijd"></div>
+              <div class="box-topic">De huidige maand</div>
+              <div class="number" id="huidige_maand"></div> <!-- See klant_dashboard.js file -->
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar-day cart two'></i>
+          </div>
+          <div class="box meerboxs">
+            <div class="right-side">
+              <div class="box-topic">Het huidige jaar</div>
+              <div class="number" id="huidige_jaar"></div> <!-- See klant_dashboard.js file -->
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar cart'></i>
+          </div>
+          <div class="box meerboxs">
+            <div class="right-side">
+              <div class="box-topic">De huidige tijd</div>
+              <div class="number" id="huidige_tijd"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
             <i class='bx bxs-time cart four'></i>
           </div>
         </div>
-
+        <!-- =======================Button for More boxs=============================== -->
+        <!-- tussen button  -->
+        <button id="add-boxs" onclick="addboxs()">Meer</button>
+        <!-- tussen button  -->
         <div class="sales-boxes">
+          <!-- =======================Div for calandar=============================== -->
           <div class="recent-sales box">
-            <div class="title">Meldingen</div>
-            <div class="sales-details">
-              <!-- ============================================== -->
-              <section>
-                <div class="square_box box_three"></div>
-                <div class="square_box box_four"></div>
-                <div class="container mt-5">
-                  <div class="row">
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert" style="left: 10px;">
-									<span aria-hidden="true"><a>
-                    <i class="fa fa-times greencross"></i>
-                    </a></span>
-									<span class="sr-only">Close</span> 
-								</button> -->
-                        <i class="start-icon far fa-check-circle faa-tada animated"></i>
-                        <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times blue-cross"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon  fa fa-info-circle faa-shake animated"></i>
-                        <strong class="font__weight-semibold">Heads up!</strong> This alert needs your attention, but it's not super important.
-                      </div>
-
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times warning"></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon fa fa-exclamation-triangle faa-flash animated"></i>
-                        <strong class="font__weight-semibold">Warning!</strong> Better check yourself, you're not looking too good.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span aria-hidden="true">
-										<i class="fa fa-times danger "></i>
-									</span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon far fa-times-circle faa-pulse animated"></i>
-                        <strong class="font__weight-semibold">Oh snap!</strong> Change a few things up and try submitting again.
-                      </div>
-                    </div>
-
-                    <div class="col-sm-12">
-                      <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                        <!-- <button type="button" class="close font__size-18" data-dismiss="alert">
-									<span  aria-hidden="true"><i class="fa fa-times alertprimary"></i></span>
-									<span class="sr-only">Close</span>
-								</button> -->
-                        <i class="start-icon fa fa-thumbs-up faa-bounce animated"></i>
-                        <strong class="font__weight-semibold">Well done!</strong> You successfullyread this important.
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-              </section>
-              <!-- ============================================== -->
-            </div>
-            <!-- <div class="button">
-              <a href="#">Alles zien</a>
-            </div> -->
+            <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
-          <!-- <div class="top-sales box" style="min-height: 65vh;"> -->
-          <!-- <div class="title">Het weer vandaag</div> -->
-          <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/nunhem_nederland_2749759_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-          <!-- </div> -->
-          <!-- ==============================================      roermond_nederland_2748000 -->
+          <!-- =======================Iframe for weather=============================== -->
+          <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/roermond_nederland_2748000_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+          <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
         </div>
+        <!-- //////////////////////////////Proberen//////////////////////////////// -->
+        <!-- <div class="sales-boxes">
+        <div class="top-sales box">
+          <div class="title">Materialen lijst</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">Naam</li>
+              <li>Keramiek</li>
+              <li>Metalen</li>
+              <li>Kunststoffen</li>
+              <li>Hout</li>
+              <li>Textiel</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Aantal</li>
+              <li>9</li>
+              <li>3</li>
+              <li>1</li>
+              <li>7</li>
+              <li>5</li>
+            </ul>
+          </div>
+        </div>
+        <div class="recent-sales box darkmode">
+          <div class="title">Bijzonder gebeurtenis</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">ID</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Naam</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Rol</li>
+              <li>Test</li>
+            </ul>
+            <ul class="details">
+              <li class="topic">Operator</li>
+              <li>Test</li>
+            </ul>
+          </div>
+        </div>
+      </div> -->
+        <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
       </div>
-      <!-- ============================================================== -->
+      <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
+      <!-- <iframe src="news.php" frameborder="0" class="news" scrolling="no"></iframe> -->
+      <!-- ==============================================================-->
       <!-- Main -->
-      <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- ============================================================== -->
       <!-- footer -->
       <!-- ============================================================== -->
@@ -323,6 +323,7 @@ $_user = $_SESSION["_user"];
   <script src="../../assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
   <script src="../../dist/js/pages/chart/chart-page-init.js"></script>
   <script src="../../dist/js/klant_dashboard.js"></script>
+  <script src="../../dist/js/darkmode.js"></script>
 </body>
 
 </html>

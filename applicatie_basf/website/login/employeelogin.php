@@ -44,6 +44,9 @@ if(isset($_POST['_Employee_Loginform_Submit']))
         }
         // Sla de gebruiker op in een sessie
         $_SESSION['_user'] = $_user;
+
+        // Sla de user_id op in een sessie
+        $_SESSION['ingelogd_userID'] = $_row["userID"];
         
         // Verwijs de gebruiker door naar de dashboard
         header("Location: ../pages/dashboard.php");
