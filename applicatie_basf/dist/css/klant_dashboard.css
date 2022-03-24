@@ -282,7 +282,8 @@
 }
 .news{
   width: 97%;
-  height: 93vh;
+  /* height: 93vh; */
+  height: 700px;
   margin-left: 1.5%;
   overflow: hidden;
   border-radius: 12px;
