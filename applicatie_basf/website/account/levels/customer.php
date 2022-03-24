@@ -16,37 +16,9 @@ class Customer extends UserAccount
     public function getNav()
     {
         // Neem de navigatie van UserAccount over
-        parent:: getNav();
-        ?>
-
-            <li class="sidebar-item">
-                <a href="pages-calendar.php" class="sidebar-link"
-                  ><i class="mdi mdi-calendar-check"></i
-                  ><span class="hide-menu"> Planning </span></a
-                >
-            </li>
-            <li class="sidebar-item">
-                <a
-                    class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="pages-customer-request.php"
-                    aria-expanded="false"
-                    ><i class="mdi mdi-account-multiple-plus"></i
-                    ><span class="hide-menu">Werknemers aanvragen</span></a
-                >
-            </li>
-            <li class="sidebar-item">
-                <a
-                    class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="material.php"
-                    aria-expanded="false"
-                    ><i class="mdi mdi-account-multiple-plus"></i
-                    ><span class="hide-menu">Materiaal aanvragen</span></a
-                >
-            </li>
-
-        <?php
         parent::getNav();
 ?>
+
         <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="calandar.php" aria-expanded="false"><i class="mdi mdi-calendar-multiple-check"></i><span class="hide-menu">Kalender</span></a>
         </li>
@@ -56,10 +28,13 @@ class Customer extends UserAccount
         </li>
 
         <li class="sidebar-item">
-            <a href="pages-calendar.php" class="sidebar-link"><i class="mdi mdi-table"></i><span class="hide-menu"> Planning </span></a>
+            <a href="pages-calendar.php" class="sidebar-link"><i class="mdi mdi-calendar-check"></i><span class="hide-menu"> Planning </span></a>
         </li>
         <li class="sidebar-item">
             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="pages-customer-request.php" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Werknemers aanvragen</span></a>
+        </li>
+        <li class="sidebar-item">
+            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="material.php" aria-expanded="false"><i class="mdi mdi-account-multiple-plus"></i><span class="hide-menu">Materiaal aanvragen</span></a>
         </li>
 
 <?php
