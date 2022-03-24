@@ -2,7 +2,7 @@
 
 class DataBase{
     // --- Fields ---
-    private $_server = "10.35.2.36";
+    private $_server = "192.168.0.105";
     private $_user = "test";
     private $_pass = "test";
     private $_database = "basfdb";

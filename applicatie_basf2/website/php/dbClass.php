@@ -8,7 +8,7 @@ class SqlCommands {
 
     public function __construct()
     {
-        $this->dbConnAddress = 'mysql:host=10.35.2.36;dbname=basfdb';
+        $this->dbConnAddress = 'mysql:host=192.168.0.101;dbname=basfdb';
         $this->name = 'test';
         $this->password = 'test';
         $this->pdo = new PDO($this->dbConnAddress, $this->name, $this->password); //login op db

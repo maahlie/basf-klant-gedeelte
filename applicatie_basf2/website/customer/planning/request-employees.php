@@ -10,13 +10,12 @@ $db = new DataBase();
 
 if(isset($_POST['_submit_Request']))
 {
-    $_department = $_user->getDepartment();
     $_employees = $_POST['_task_Force'];
     $_date = strtotime($_POST['_task_Date']);
     $_date = date("Y-m-d", $_date);
-    $_crop = $_POST['_task_crop'];
-    $_work = $_POST['_task_work'];
+    $_work = $_POST['_work_comp'];
     $_desc = $_POST['_task_Description'];
+    $_department = $_POST['_crop'];
 
 
     $_data = array (
@@ -24,8 +23,8 @@ if(isset($_POST['_submit_Request']))
         array("descr", $_desc),
         array("date", $_date),
         array("departmentID", $_department),
-        array("crop", $_crop),
-        array("workCompName", $_work)
+        array("workCompName", $_work),
+        array("userID", $_user->getTableID())
     );
 
     // Sla de gegevens op in de database
@@ -43,12 +42,12 @@ if(isset($_POST['_confirm_change']))
     $_work = $_POST['_work'];
     $_desc = $_POST['_desrciption'];
 
+
     $_data = array (
         array("reqStaff", $_employees),
         array("descr", $_desc),
         array("date", $_date),
-        array("departmentID", $_department),
-        array("crop", $_crop),
+        array("departmentID", $_crop),
         array("workCompName", $_work)
     );
 
