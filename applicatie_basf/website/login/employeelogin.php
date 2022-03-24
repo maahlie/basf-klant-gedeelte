@@ -16,7 +16,7 @@ if(isset($_POST['_Employee_Loginform_Submit']))
     $_employee_Password = $_POST['Login_Employeepassword'];
 
     // Haal gegevens op uit de database op basis van de hierboven verkregen waarden
-    $_result = $database->getDataAnd("*", "employee", "email", $_employee_Email, "password", $_employee_Password);
+    $_result = $database->getDataAnd("*", "employee", "emailWork", $_employee_Email, "password", $_employee_Password);
 
     // Controleer of de gebruiker in de database bestaat
     if ($_result->num_rows > 0)

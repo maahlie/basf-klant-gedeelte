@@ -9,7 +9,7 @@ class DataBase{
     private $_server = "localhost";
     private $_user = "root";
     private $_pass = "";
-    private $_database = "basf_db";
+    private $_database = "basfdb";
     private $_conn;
 
     // --- Constructor ---
