@@ -49,30 +49,51 @@ $_user = $_SESSION["_user"];
       }
 
       function hideForm() {
-
         let column = document.getElementsByClassName("editTd");
-        let confirm_btn = document.getElementById("confirm_btn");
+        let confirm_btn = document.getElementsByClassName("btn_confirm");
+        let delete_btn = document.getElementsByClassName("btn_delete");
         let edit_btn = document.getElementById("edit_btn");
         let thing = document.getElementById("editing");
 
-        for (let i = 0; i < column.length; i++) {
-          if(column[i].contentEditable  == 'false')
+        if(column[0].contentEditable  == 'false')
+        {
+
+          edit_btn.innerHTML = "Stop";
+          edit_btn.style.color = "red";
+          thing.style.display = 'inline';
+
+          for (let i = 0; i < column.length; i++) 
           {
             column[i].contentEditable  = 'true';
-            confirm_btn.style.display = 'inline';
-            edit_btn.innerHTML = "Stop";
-            edit_btn.style.color = "red";
-            thing.style.display = 'inline';
-          }else{
+            column[i].style.backgroundColor  = '#d9d9d9';
+          }
+
+          for (let i = 0; i < confirm_btn.length; i++)
+          {
+            confirm_btn[i].style.display = 'inline';
+            delete_btn[i].style.display = 'none';
+            confirm_btn[i].style.backgroundColor = 'green';
+            confirm_btn[i].style.borderColor = 'green';
+          }
+        } else {
+
+          edit_btn.innerHTML = "Bewerk";
+          edit_btn.style.color = "";
+          thing.style.display = 'none';
+
+          for (let i = 0; i < column.length; i++) 
+          {
             column[i].contentEditable  = 'false';
-            confirm_btn.style.display = 'none';
-            edit_btn.innerHTML = "Bewerk";
-            edit_btn.style.color = "";
-            thing.style.display = 'none';
-          }        
-        }
+            column[i].style.backgroundColor  = '';
+          }
 
-
+          for (let i = 0; i < confirm_btn.length; i++)
+          {
+            confirm_btn[i].style.display = 'none';
+            delete_btn[i].style.display = 'inline';
+            delete_btn[i].style.backgroundColor = '';
+          }
+        }    
       }
     </script>
   </head>
@@ -256,6 +277,24 @@ $_user = $_SESSION["_user"];
                   </div>
                 </div><br>
                 <div class="form-group row">
+                  <?php
+                        // $db = new DataBase();
+
+                        // $dates = $db->getData("date", "planning");
+                        // $row = $list->fetch_all();
+
+
+                        // $timestamp = strtotime($row[0][1]);
+                        // $day = date('D', $timestamp);
+
+                        // $list = $db->getDataWhere("firstName, lastName", "employee", "userID", $_value);
+                        // $row = $list->fetch_all();
+                        
+                        // for($i=0; $i<$list->num_rows; $i++)
+                        // {
+                        //   echo '<option value=' . $row[$i][0] . '>';
+                        // }
+                  ?>
                  <label
                    for="cono1">Werkindeling</label>
                    <div class="col-lg-6">
@@ -389,7 +428,6 @@ $_user = $_SESSION["_user"];
                   <button onclick="hideForm();" class="btn">
                   <h7 id="edit_btn" class="card-title">Bewerk</h7>
                   </button>
-                  <form>
                 <div class="col-lg-6">
                 <div class="table-responsive">   <br>
                     <table
@@ -434,11 +472,8 @@ $_user = $_SESSION["_user"];
                                 <td class='editTd' contenteditable='false'>". $_work. "</td>        <input type='hidden' class='updateTxb' id='_work' name='_work' value=''>
                                 <td class='editTd' contenteditable='false'>". $_desrciption. "</td> <input type='hidden' class='updateTxb' id='_desrciption' name='_desrciption' value=''>
                                 <td>
-                                <button type='submit' class='btn' id='confirm_btn' style='display: none; color:green;' value='". $_res["taskID"]. "' name='_confirm_change' onclick='submitUpdate();'>Bevestig</button>
-                                </form>
-
-                                    <form action='../planning/request-employees.php' method='post'>  
-                                      <button type='submit' class='btn btn-danger' name='_delete_Task' value='". $_res["taskID"]. "' onClick=\"javascript: return confirm('Bevestig verwijdering');\"><i class='fas fa-trash'></i></button>
+                                    <button type='submit' class='btn btn-danger btn_confirm' name='_confirm_change' value='". $_res["taskID"]. "' id='confirm_btn' onclick='submitUpdate();' style='display: none;' ><i class='fas fa-check'></i></button>
+                                    <button type='submit' class='btn btn-danger btn_delete' name='_delete_Task' value='". $_res["taskID"]. "' id='delete_btn' onClick=\"javascript: return confirm('Bevestig verwijdering');\"><i class='fas fa-trash'></i></button>
                                   </form>
                                 </td>
                               </tr>
