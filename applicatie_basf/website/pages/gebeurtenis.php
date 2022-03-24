@@ -29,6 +29,18 @@ $_user = $_SESSION["_user"];
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
+        :root {
+            --color: white;
+        }
+
+        .dark-theme {
+            --color: black;
+        }
+
+        .page-wrapper {
+            background-color: var(--color);
+        }
+
         .iframe_calandar_class {
             display: flex;
             width: 100%;

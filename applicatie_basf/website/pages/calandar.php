@@ -34,11 +34,14 @@ $_user = $_SESSION["_user"];
         .dark-theme {
             --color: rgb(187, 40, 40);
         }
+        body{
+            overflow: hidden; /* Hide scrollbars */
+        }
         .iframe_calandar_class {
-            padding-top: 8px;
             display: flex;
             width: 100%;
-            height: 91.5vh;
+            height: 92.5vh;
+            padding-top: 8px;
             background-color: var(--color);
         }
     </style>
