@@ -95,9 +95,9 @@ $_SESSION["news_aantal_keren"] = 5;
                   <a class="dropdown-item" href="#">Something else here</a>
                 </li>
               </ul>
-              <li class="nav-item d-none d-lg-block">
+            <li class="nav-item d-none d-lg-block">
               <a class="nav-link" id="change"><i class="mdi mdi-white-balance-sunny" id="sunmoon"></i></a>
-                </li>
+            </li>
             </li>
           </ul>
           <!-- Right side toggle and nav items -->
@@ -139,7 +139,6 @@ $_SESSION["news_aantal_keren"] = 5;
     <!-- ============================================================== -->
 
     <div class="page-wrapper">
-      <!-- 0000000000000000000000000000000000000000000000000000000000000000000000000000 -->
       <!-- Main -->
       <!-- =======================Div for Boxs=============================== -->
       <div class="home-content">
@@ -174,7 +173,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Week nummer</div>
-              <div class="number" id="week"></div>  <!-- See klant_dashboard.js file -->
+              <div class="number" id="week"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -183,7 +182,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige datum</div>
-              <div class="number" id="huidige_dag"></div>  <!-- See klant_dashboard.js file -->
+              <div class="number" id="huidige_dag"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -192,7 +191,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige maand</div>
-              <div class="number" id="huidige_maand"></div>  <!-- See klant_dashboard.js file -->
+              <div class="number" id="huidige_maand"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -201,7 +200,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">Het huidige jaar</div>
-              <div class="number" id="huidige_jaar"></div>  <!-- See klant_dashboard.js file -->
+              <div class="number" id="huidige_jaar"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -210,7 +209,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige tijd</div>
-              <div class="number" id="huidige_tijd"></div>  <!-- See klant_dashboard.js file -->
+              <div class="number" id="huidige_tijd"></div> <!-- See klant_dashboard.js file -->
               <div class="indicator">
               </div>
             </div>
@@ -223,7 +222,7 @@ $_SESSION["news_aantal_keren"] = 5;
         <!-- tussen button  -->
         <div class="sales-boxes">
           <!-- =======================Div for calandar=============================== -->
-          <div class="recent-sales box"> 
+          <div class="recent-sales box">
             <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
           <!-- =======================Iframe for weather=============================== -->
@@ -275,7 +274,7 @@ $_SESSION["news_aantal_keren"] = 5;
           </div>
         </div>
       </div> -->
-      <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
+        <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
       </div>
       <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
       <!-- <iframe src="news.php" frameborder="0" class="news" scrolling="no"></iframe> -->
