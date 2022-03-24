@@ -40,17 +40,17 @@ $_user = $_SESSION["_user"];
     <script>
 
       function submitUpdate() {
+
         let columnTable = document.getElementsByClassName("editTd");
-        let task_list = document.getElementsByClassName("_task_dropdown");
         let columnTxb = document.getElementsByClassName("updateTxb");
 
-        let test = task_list[i].options[task_list[i.selectedIndex]].value;
-
-
         for (let i = 0; i < columnTable.length; i++) {
+
           columnTxb[i].value = columnTable[i].innerHTML;
+          
         }
       }
+
 
       function hideForm() {
         let column = document.getElementsByClassName("editTd");
@@ -59,7 +59,11 @@ $_user = $_SESSION["_user"];
         let edit_btn = document.getElementById("edit_btn");
         let thing = document.getElementById("editing");
         let task_list = document.getElementsByClassName("_task_dropdown");
+        let work_list = document.getElementsByClassName("_work_dropdown");
+
         let crop_name = document.getElementsByClassName("_crop_name");
+        let work_name = document.getElementsByClassName("_work_name");
+
 
         if(column[0].contentEditable  == 'false')
         {
@@ -82,7 +86,10 @@ $_user = $_SESSION["_user"];
             confirm_btn[i].style.borderColor = 'green';
             task_list[i].style.display = 'inline';
             crop_name[i].style.display = 'none';
+            work_list[i].style.display = 'inline';
+            work_name[i].style.display = 'none';
           }
+
         } else {
 
           edit_btn.innerHTML = "Bewerk";
@@ -102,6 +109,8 @@ $_user = $_SESSION["_user"];
             delete_btn[i].style.backgroundColor = '';
             task_list[i].style.display = 'none';
             crop_name[i].style.display = 'inline';
+            work_list[i].style.display = 'none';
+            work_name[i].style.display = 'inline';
           }
         }    
       }
@@ -420,7 +429,7 @@ $_user = $_SESSION["_user"];
                   <button onclick="hideForm();" class="btn">
                   <h7 id="edit_btn" class="card-title">Bewerk</h7>
                   </button>
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                 <div class="table-responsive">   <br>
                     <table
                       id="zero_config"
@@ -481,8 +490,23 @@ $_user = $_SESSION["_user"];
 
                                 echo 
                                 "</select><span class='_crop_name' style='display: inline;'>". $_crop. "</span>
-                                </td>        <input type='hidden' class='updateTxb' id='_crop' name='_crop' value=''>
-                                <td class='editTd' contenteditable='false'>". $_work. "</td>        <input type='hidden' class='updateTxb' id='_work' name='_work' value=''>
+                                </td>        <input type='hidden' class='updateTxb updateTxb_crop' id='_crop' name='_crop2' value=''>
+                                <td class='editTd' contenteditable='false'><span class='_work_name' style='display: inline;'>". $_work. "</span>
+                                <select id='crop' name='_work' style='display: none;' class='form-control input-group _work_dropdown'>";
+
+                                $db = new DataBase();
+                                $list = $db->getData("workCompName", "workcomp");
+        
+                                $row = $list->fetch_all();
+                                
+                                for($i=0; $i<$list->num_rows; $i++)
+                                {
+                                  echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
+                                }
+
+                                echo 
+                                "</select>
+                                </td>        <input type='hidden' class='updateTxb' id='_work' name='_work2' value=''>
                                 <td class='editTd' contenteditable='false'>". $_desrciption. "</td> <input type='hidden' class='updateTxb' id='_desrciption' name='_desrciption' value=''>
                                 <td>
                                     <button type='submit' class='btn btn-danger btn_confirm' name='_confirm_change' value='". $_res["taskID"]. "' id='confirm_btn' onclick='submitUpdate();' style='display: none;' ><i class='fas fa-check'></i></button>
