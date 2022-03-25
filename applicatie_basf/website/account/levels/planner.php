@@ -52,6 +52,7 @@ class Planner extends UserAccount{
                     ><i class="mdi mdi-calendar-today"></i
                     ><span class="hide-menu">Competenties overzicht</span></a
                 >
+
             </li>
             <li class="sidebar-item">
                 <a
@@ -61,6 +62,7 @@ class Planner extends UserAccount{
                     ><i class="mdi mdi-calendar-today"></i
                     ><span class="hide-menu">Aangevraagd verlof</span></a
                 >
+                
             </li>
         <?php
         // Voeg secundaire navigatie toe

@@ -169,57 +169,114 @@ $_user = $_SESSION["_user"];
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Vraag hier uw materiaal aan voor uw afdeling.</h4>
+              <h4 class="page-title">Vraag hier uw bus/bussen aan.</h4>
             </div>
           </div>
         </div>
         <!-- Container fluid  -->
         <div class="container-fluid">
         
-        <h3>Materiaal</h3>
-        <textarea placeholder="Materiaal" class="contact-form-textarea"></textarea>
+        <h3>Bussen</h3>
+<form action="../planning/insertbus.php" method="post">
+        <label for="cars">Week:</label>
+  <select id="cars" name="cars">
+    <option value="12">12</option>
+    <option value="13">13</option>
+    <option value="14">14</option>
+    <option value="15">15</option>
+  </select>
+       
+
+  <?php
+    $_result = $_user->requestData("*", "bus");
+    while ($_res = mysqli_fetch_array($_result))
+    {
+      $_value = $_res["busID"];
+      $_name = explode(', ', $_res["busType"])[0];
+      $_plate = explode(', ', $_res["busType"])[1];
+      $_amount = $_res["busAmount"];
+      echo "<div><input type='checkbox' id='" . $_plate . "' value='" . $_value . "' name='bus[]'><label for='" . $_plate . "'>" . $_name . ', ' . $_plate . ', ' . $_amount . " personen</label></div>";
+    }
+  ?>
+
         <style>
           .contact-form-textarea{
           width: 100%;
           height: 130px;
-          color: #000;
-          border: 1px solid #bcbcbc;
-          border-radius: 50px;
-          outline: none;
-          margin-bottom: 20px;
-          padding: 15px;
-          font-family: 'Poppins', sans-serif;
+          
         }
           </style>
-        <form><input type="text" placeholder="Hoeveelheid" class="contact-form-txt" />
-       <style>
-         .contact-form-txt{
-          width: 100%;
-          height: 40px;
-          color: #000;
-          border: 1px solid #bcbcbc;
-          border-radius: 50px;
-          outline: none;
-          margin-bottom: 20px;
-          padding: 15px;
+          <input type="date" id="start-date" name="startDate" required>
+          <input type="date" id="end-date" name="endDate" required>
+          <input type="submit">
+          </form>
+          
+          
+  <table>
+    <tr>
+        <th>Bus</th>
+        <th>Maandag</th>
+        <th>Dinsdag</th>
+        <th>Woensdag</th>
+        <th>Donderdag</th>
+        <th>Vrijdag</th>
+        <th>Zaterdag</th>
+        <th>Zondag</th>
+    </tr>
+    <?php
+
+
+      $_result = $_user->requestData("*", "bus");
+       $date_now = date("Y-m-d");
+
+      while ($_res = mysqli_fetch_array($_result))
+      {
+        $_value = $_res["busID"];
+        $_name = explode(', ', $_res["busType"])[0];
+        $_plate = explode(', ', $_res["busType"])[1];
+        $_amount = $_res["busAmount"];
+
+        echo "<tr><td>". $_name . " - ". $_plate ."</td>";
+
+        $_orderedBusses = $_user->requestDataWhere('*', 'orderbus', 'busID', $_value);
+        $today = time();
+        $wday = date('w', $today);   
+        
+        while ($_res = mysqli_fetch_array($_orderedBusses))
+        {
+          if ($date_now < $_res['dateEnd']) {
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 1)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 2)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 3)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 4)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 5)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 6)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 7)*86400)) {
+              echo '<td>' . $_res["userID"] . '</td>';
+            }
+          }
         }
-         </style>
-         <form><input type="submit" name="submit" class="contact-form-btn" />
-       <style>
-         .contact-form-btn
-{
-  width: 100%;
-  border: none;
-  outline: none;
-  border-radius: 50px;
-  background: #3e5569;
-  color: #fff;
-  text-transform: uppercase;
-  padding: 10p 0;
-  cursor: pointer;
-  font-size: 18px;
-}
-         </style>
+        ?>
+        </tr>
+        <?php
+      }
+    ?>
+  </table>
+      
+
+       
         </div>
     
                     

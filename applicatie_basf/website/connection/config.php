@@ -164,8 +164,11 @@ class DataBase{
 
 
         $_sql = "INSERT INTO ". $_table. " (". $_rows. ") VALUES (". $_values.")";
+
         $_result = mysqli_query($this->_conn, $_sql);
+
         return $_result;
+
 
         // Sluit de connectie
         $this->closeConn();
