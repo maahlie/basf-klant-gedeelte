@@ -8,13 +8,14 @@ class Calandar
 
     public function __construct()
     {
-        $this->connect = new PDO('mysql:host=localhost;dbname=basf_db', 'root', '');
+        $this->connect = new PDO('mysql:host=localhost;dbname=basfdb', 'root', '');
     }
     //Load function aanmaken
     public function Load()
     {
         $data = array();
 
+        //als je ipv de session var 3 doet werkt het
         $query = "SELECT * FROM events WHERE userid = '$_SESSION[ingelogd_userID]' ORDER BY id";
 
         $statement = $this->connect->prepare($query);

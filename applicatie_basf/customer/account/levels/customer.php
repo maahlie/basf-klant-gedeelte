@@ -35,24 +35,8 @@ class Customer extends UserAccount
         </li>
 
 <?php
-        parent:: getNav();
+        // parent:: getNav();
         ?>
-
-            <li class="sidebar-item">
-                <a href="pages-calendar.php" class="sidebar-link"
-                  ><i class="mdi mdi-calendar-check"></i
-                  ><span class="hide-menu"> Planning </span></a
-                >
-            </li>
-            <li class="sidebar-item">
-                <a
-                    class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="pages-customer-request.php"
-                    aria-expanded="false"
-                    ><i class="mdi mdi-account-multiple-plus"></i
-                    ><span class="hide-menu">Werknemers aanvragen</span></a
-                >
-            </li>
             <li class="sidebar-item">
                 <a
                     class="sidebar-link waves-effect waves-dark sidebar-link"
