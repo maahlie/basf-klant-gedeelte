@@ -225,56 +225,85 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="recent-sales box">
             <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
+          <!-- =======================Meldingen=============================== -->
+          <div class="top-sales box">
+            <div class="title">Meldingen</div>
+            <!-- <div class="sales-details">
+              <ul class="details">
+                <li class="topic">Naam</li>
+                <li>Keramiek</li>
+                <li>Metalen</li>
+                <li>Kunststoffen</li>
+                <li>Hout</li>
+                <li>Textiel</li>
+              </ul>
+              <ul class="details">
+                <li class="topic">Aantal</li>
+                <li>9</li>
+                <li>3</li>
+                <li>1</li>
+                <li>7</li>
+                <li>5</li>
+              </ul>
+            </div> -->
+            <section>
+              <div class="square_box box_three"></div>
+              <div class="square_box box_four"></div>
+              <div class="container mt-5">
+                <div class="row">
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                      <strong class="font__weight-semibold">2021-03-26</strong><br>Controleer of uw gegevens nog kloppen
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                      <strong class="font__weight-semibold">2021-03-23</strong><br>Het dragen van een mondkapje, is niet meer verplicht
+                    </div>
+
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                      <strong class="font__weight-semibold">2021-03-17</strong><br>Als iets niet goed werkt, meld het aan
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                      <strong class="font__weight-semibold">2021-03-14</strong><br>Let wel: corona is niet weg
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
+                      <strong class="font__weight-semibold">2021-03-11</strong><br>We hebben snel aanvullende gegevens van u nodig
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-extra alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                      <strong class="font__weight-semibold">2021-02-21</strong><br>Vanaf vandaag kunt u weer uw belastingaangifte doen
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <!-- //////////////////////////////Proberen//////////////////////////////// -->
+        <div class="sales-boxes">
           <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/roermond_nederland_2748000_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
           <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
+
+          <!-- <div class="recent-sales box color"> -->
+          <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
+          <!-- </div> -->
         </div>
-        <!-- //////////////////////////////Proberen//////////////////////////////// -->
-        <!-- <div class="sales-boxes">
-        <div class="top-sales box">
-          <div class="title">Materialen lijst</div>
-          <div class="sales-details">
-            <ul class="details">
-              <li class="topic">Naam</li>
-              <li>Keramiek</li>
-              <li>Metalen</li>
-              <li>Kunststoffen</li>
-              <li>Hout</li>
-              <li>Textiel</li>
-            </ul>
-            <ul class="details">
-              <li class="topic">Aantal</li>
-              <li>9</li>
-              <li>3</li>
-              <li>1</li>
-              <li>7</li>
-              <li>5</li>
-            </ul>
-          </div>
-        </div>
-        <div class="recent-sales box darkmode">
-          <div class="title">Bijzonder gebeurtenis</div>
-          <div class="sales-details">
-            <ul class="details">
-              <li class="topic">ID</li>
-              <li>Test</li>
-            </ul>
-            <ul class="details">
-              <li class="topic">Naam</li>
-              <li>Test</li>
-            </ul>
-            <ul class="details">
-              <li class="topic">Rol</li>
-              <li>Test</li>
-            </ul>
-            <ul class="details">
-              <li class="topic">Operator</li>
-              <li>Test</li>
-            </ul>
-          </div>
-        </div>
-      </div> -->
-        <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
       </div>
       <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
       <!-- <iframe src="news.php" frameborder="0" class="news" scrolling="no"></iframe> -->
