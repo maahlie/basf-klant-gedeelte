@@ -11,7 +11,8 @@ class UserAccount{
 
     protected $_firstname;
     protected $_lastname;
-    protected $_email;
+    protected $_email_Work;
+    protected $_email_Private;
     protected $_phone;
     protected $_phone_Emerg;
     protected $_department;
@@ -33,7 +34,8 @@ class UserAccount{
 
         $this->_firstname = $_user_Info['firstName'];
         $this->_lastname = $_user_Info['lastName'];
-        $this->_email = $_user_Info['email'];
+        $this->_email_Work = $_user_Info['emailWork'];
+        $this->_email_Private = $_user_Info['emailPrivate'];       
         $this->_phone = $_user_Info['telNumMobile'];
         $this->_phone_Emerg = $_user_Info['telNumEmergency'];
         $this->_department = $_user_Info['departmentID'];
@@ -60,9 +62,15 @@ class UserAccount{
     }
 
     // Geef het emailadres
-    public function getEmail()
+    public function getEmailWork()
     {
-        return $this->_email;
+        return $this->_email_Work;
+    }
+
+    // Geef het emailadres
+    public function getEmailPrivate()
+    {
+        return $this->_email_Private;
     }
 
     // Geef het telefoonnummer

@@ -10,5 +10,5 @@ if(isset($_SESSION['_user']))
 else
 {
   // Zoniet, Verwijs naar het loginscherm
-  header("Location: employeeindex.php");
+  header("Location: ../index.php");
 }
