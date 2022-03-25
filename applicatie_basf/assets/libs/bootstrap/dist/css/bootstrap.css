@@ -3060,6 +3060,17 @@ textarea.form-control-lg {
   border-color: #ffc107;
 }
 
+.btn-confirm {
+  color: #fff;
+  background-color: green;
+  border-color: rgb(1, 107, 1);
+}
+.btn-confirm:hover {
+  color: #fff;
+  background-color: rgb(1, 100, 1);
+  border-color: rgb(0, 83, 0);
+}
+
 .btn-danger {
   color: #fff;
   background-color: #dc3545;

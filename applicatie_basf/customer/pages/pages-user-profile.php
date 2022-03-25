@@ -285,11 +285,22 @@ $_user = $_SESSION["_user"];
                   <hr>
                   <div class="row"> <!-- email adress -->
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
+                      <h6 class="mb-0">Email werk</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
                        <?php
-                          echo $_user->getEmail();
+                          echo $_user->getEmailWork();
+                       ?>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row"> <!-- email adress -->
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email privé</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                       <?php
+                          echo $_user->getEmailPrivate();
                        ?>
                     </div>
                   </div>

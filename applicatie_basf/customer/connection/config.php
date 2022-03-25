@@ -105,14 +105,14 @@ class DataBase{
                 Vanuit bovenstaand voorbeeld:
                 "Volvo='22', BMW='15', Saab='5', Land Rover='17'"
             */
-            $_set .= "$_array[$i][0]='$_array[$i][1]'";
+            $_set .= $_array[$i][0]. "='". $_array[$i][1]. "'";
             if ($i != (count($_array) - 1)) 
             {
-                $_set .= ", ";
+                $_set .= ",";
             }
         }
 
-        $_sql = "UPDATE ". $_table ." SET ". $_set. " WHERE ". $_where. "= ". $_value;
+        $_sql = "UPDATE ". $_table ." SET ". $_set. " WHERE ". $_where. "=". "'$_value'";
         $_result = mysqli_query($this->_conn, $_sql);
         return $_result;
 
