@@ -273,13 +273,13 @@ $_SESSION["news_aantal_keren"] = 5;
 
                   <div class="col-sm-12">
                     <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-14</strong><br>Let wel: corona is niet weg
+                      <strong class="font__weight-semibold">2021-03-14</strong><br>We hebben snel aanvullende gegevens van u nodig
                     </div>
                   </div>
 
                   <div class="col-sm-12">
                     <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-11</strong><br>We hebben snel aanvullende gegevens van u nodig
+                      <strong class="font__weight-semibold">2021-03-11</strong><br>Goed nieuws! salarissen gaan omhoog
                     </div>
                   </div>
 
@@ -289,11 +289,11 @@ $_SESSION["news_aantal_keren"] = 5;
                     </div>
                   </div>
 
-                  <div class="col-sm-12">
+                  <!-- <div class="col-sm-12">
                     <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-02-16</strong><br>Goed nieuws! salarissen gaan omhoog
+                      <strong class="font__weight-semibold">2021-02-16</strong><br>Let wel: corona is niet weg 
                     </div>
-                  </div>
+                  </div> -->
 
                 </div>
               </div>
