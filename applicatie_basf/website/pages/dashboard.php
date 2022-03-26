@@ -226,7 +226,7 @@ $_SESSION["news_aantal_keren"] = 5;
             <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
           <!-- =======================Meldingen=============================== -->
-          <div class="top-sales box">
+          <div class="top-sales box scrollbardiv">
             <div class="title">Meldingen</div>
             <!-- <div class="sales-details">
               <ul class="details">
@@ -285,7 +285,13 @@ $_SESSION["news_aantal_keren"] = 5;
 
                   <div class="col-sm-12">
                     <div class="alert fade alert-simple alert-extra alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-02-21</strong><br>Vanaf vandaag kunt u weer uw belastingaangifte doen
+                      <strong class="font__weight-semibold">2021-02-21</strong><br>Vanaf vandaag kunt u weer uw belastingaangifte doen 
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                      <strong class="font__weight-semibold">2021-02-16</strong><br>Goed nieuws! salarissen gaan omhoog
                     </div>
                   </div>
 

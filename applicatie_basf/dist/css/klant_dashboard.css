@@ -233,13 +233,30 @@
 .home-content .sales-boxes .top-sales {
     width: 45%;
     min-height: 620px !important;
+    max-height: 620px !important;
+    overflow-y: auto;
     background: var(--grey);
     color: var(--black);
     margin: 0 20px 20px 0;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-
+.scrollbardiv::-webkit-scrollbar {
+    width: 12px;
+}
+.scrollbardiv::-webkit-scrollbar-track {
+    background-color: var(--red);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+.scrollbardiv::-webkit-scrollbar-thumb {
+    background-color: var(--yellow);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+    border-radius: 10px;
+}
+.scrollbardiv::-webkit-scrollbar-thumb:hover {
+    background-color: var(--yellow2);
+}
 .sales-boxes .top-sales li {
     display: flex;
     align-items: center;
@@ -362,7 +379,7 @@
     }
     .home-content .sales-boxes .box {
         width: 100%;
-        overflow-x: scroll;
+        /* overflow-x: scroll; */
         margin-bottom: 30px;
     }
     .home-content .sales-boxes .top-sales {
