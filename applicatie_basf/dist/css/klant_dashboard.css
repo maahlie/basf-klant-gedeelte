@@ -232,14 +232,16 @@
 
 .home-content .sales-boxes .top-sales {
     width: 45%;
-    min-height: 620px !important;
-    max-height: 620px !important;
-    overflow-y: auto;
+    min-height: 600px !important;
+    max-height: 600px !important;
     background: var(--grey);
     color: var(--black);
     margin: 0 20px 20px 0;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.scrollbardiv{
+    overflow-y: auto;
 }
 .scrollbardiv::-webkit-scrollbar {
     width: 12px;
