@@ -289,11 +289,12 @@ $_SESSION["news_aantal_keren"] = 5;
                     </div>
                   </div>
 
-                  <!-- <div class="col-sm-12">
+                  <!-- Let wel: corona is niet weg  -->
+                  <div class="col-sm-12">
                     <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-02-16</strong><br>Let wel: corona is niet weg 
+                      <strong class="font__weight-semibold">2021-02-16</strong><br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis autem architecto unde sunt expedita repellendus corrupti similique, cumque quae quisquam, quod voluptates consequuntur eum molestiae nemo. Aliquid laborum quo ipsa.
                     </div>
-                  </div> -->
+                  </div>
 
                 </div>
               </div>

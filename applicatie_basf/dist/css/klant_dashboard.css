@@ -10,6 +10,7 @@
     --yellow2: rgb(223, 200, 200);
     --red: #fff;
     --grey: #fff;
+    --green: #fff;
 }
 
 .dark-theme {
@@ -21,6 +22,7 @@
     --page: black;
     --black: white;
     --grey: #392b3a;
+    --green: #2F576E;
 }
 
 .page-wrapper {
@@ -138,7 +140,7 @@
 
 .home-content .sales-boxes .recent-sales {
     width: 65%;
-    background-color: var(--red);
+    background-color: var(--green);
     margin: 0 20px 20px 20px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -169,7 +171,7 @@
     width: 100%;
     min-height: 100% !important;
     padding-top: 1%;
-    background-color: var(--red);
+    background-color: var(--green);
 }
 
 .title::-webkit-scrollbar {
