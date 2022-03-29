@@ -9,19 +9,26 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
     }
-    $sql = "SELECT * FROM employee WHERE emailWork = ?;";
+    $sql = "SELECT * FROM employee WHERE emailWork = ? OR emailPrivate = ?;";
     $stmt = $SqlCommands->pdo->prepare($sql);
-    $params = [$email];
+    $params = [$email, $email];
     $stmt->execute($params);
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($result) {
         $inputHached = hash('sha256', $password . $result['salt']);
+
+        $userID = $result['userID'];
+        $sql = "SELECT * FROM code WHERE userID = ?;";
+        $stmt = $SqlCommands->pdo->prepare($sql);
+        $params = [$userID];
+        $stmt->execute($params);
+        $code = $stmt->fetch(PDO::FETCH_ASSOC);
     } else {
         $inputHached = false; 
     }
 
-    if ($result && $inputHached == $result['password']) {
+    if ($result && ($inputHached == $result['password'] || $inputHached == $code['code'])) {
         switch ($result['clearanceLvl']) {
             case 1:
                 $_SESSION['userData'] = $result; 
@@ -42,6 +49,10 @@
             default:
                 # code...
                 break;
+        }
+
+        if ($inputHached == $code['code']) {
+            $_SESSION["codeUsed"] = $code["codeID"];
         }
     } else {
         $_SESSION['error'] = "onjuist"; 
