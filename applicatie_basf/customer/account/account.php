@@ -225,6 +225,28 @@ class UserAccount{
        <?php
     }
 
+    public function showDept()
+    {
+        $list = $this->requestDataWhere("departmentID, departmentName", "department", "customerID", $this->getTableID());
+        $row = $list->fetch_all();
+        
+        for($i=0; $i<$list->num_rows; $i++)
+        {
+          echo '<option value="' . $row[$i][0] . '">' . $row[$i][1] . '</option>';
+        }
+    }
+
+    public function showWork()
+    {
+        $list = $this->requestData("workCompName", "workcomp");
+        $row = $list->fetch_all();
+        
+        for($i=0; $i<$list->num_rows; $i++)
+        {
+          echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
+        }
+    }
+
     //!---------------get functies----------------!
 
     //----------------set functies-----------------

@@ -8,27 +8,53 @@ session_start();
 $_user = $_SESSION["_user"];
 $db = new DataBase();
 
+
 if(isset($_POST['_submit_Request']))
 {
-    $_employees = $_POST['_task_Force'];
-    $_date = strtotime($_POST['_task_Date']);
-    $_date = date("Y-m-d", $_date);
-    $_work = $_POST['_work_comp'];
-    $_desc = $_POST['_task_Description'];
-    $_department = $_POST['_crop'];
+    if(isset($_POST['_num_rowsTxb'])){
+        for($i=0; $i<$_POST['_num_rowsTxb']; $i++){
+            $_employees = $_POST['_task_Force_'.$i];
+            $_date = strtotime($_POST['_task_Date_'.$i]);
+            $_date = date("Y-m-d", $_date);
+            $_work = $_POST['_work_comp_'.$i];
+            $_desc = $_POST['_task_Description_'.$i];
+            $_department = $_POST['_crop_'.$i];
+
+            $_data = array (
+                array("reqStaff", $_employees),
+                array("descr", $_desc),
+                array("date", $_date),
+                array("departmentID", $_department),
+                array("workCompName", $_work),
+                array("userID", $_user->getTableID())
+            );
+
+            // Sla de gegevens op in de database
+            $_user->registerData("task", $_data);
+        }
+    }else{
+        $test = 1;
+
+        $_employees = $_POST['_task_Force'];
+        $_date = strtotime($_POST['_task_Date']);
+        $_date = date("Y-m-d", $_date);
+        $_work = $_POST['_work_comp'];
+        $_desc = $_POST['_task_Description'];
+        $_department = $_POST['_crop'];
 
 
-    $_data = array (
-        array("reqStaff", $_employees),
-        array("descr", $_desc),
-        array("date", $_date),
-        array("departmentID", $_department),
-        array("workCompName", $_work),
-        array("userID", $_user->getTableID())
-    );
+        $_data = array (
+            array("reqStaff", $_employees),
+            array("descr", $_desc),
+            array("date", $_date),
+            array("departmentID", $_department),
+            array("workCompName", $_work),
+            array("userID", $_user->getTableID())
+        );
 
-    // Sla de gegevens op in de database
-    $_user->registerData("task", $_data);
+        // Sla de gegevens op in de database
+        $_user->registerData("task", $_data);
+    }
 }
 
 if(isset($_POST['_confirm_change']))
