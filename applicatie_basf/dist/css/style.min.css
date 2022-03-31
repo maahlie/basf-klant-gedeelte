@@ -9695,6 +9695,7 @@ select.form-select.form-control-line {
   align-items: center;
   margin: 0px;
   padding: 0 10px 0 10px;
+  background-color: orange;
 }
 .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
   display: none;

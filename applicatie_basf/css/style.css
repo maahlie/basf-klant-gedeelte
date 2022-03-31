@@ -52,7 +52,7 @@
   
   :root {
 	--htmlFontSize: 100%;
-	--bodyBackgroundColor: rgba(24, 24, 24, 0.92);
+	--bodyBackgroundColor: rgba(24, 24, 24, 0.50);
 	--bodyColor: var(--baseColor);
 	--bodyFontFamily: "Open Sans";
 	--bodyFontFamilyFallback: sans-serif;
@@ -72,7 +72,8 @@
   
   body {
   position: relative;
-  background-image: url(../images/nunhem-bg.png);
+  background-image: url(../images/plant.jpg); 
+  /* /-0-\ */
   background-size: cover;
 	color: var(--bodyColor);
 	font-family: var(--bodyFontFamily), var(--bodyFontFamilyFallback);
@@ -120,7 +121,8 @@
   input {
 	background-image: none;
 	border: 0;
-	color: inherit;
+	/* color: inherit; */
+  /* color_here */
 	font: inherit;
 	margin: 0;
 	outline: 0;
@@ -165,7 +167,7 @@
   
 	--loginSubmitBackgroundColor: #0A2558;
 	--loginSubmitColor: #eee;
-	--loginSubmitHoverBackgroundColor: #081D45;
+	--loginSubmitHoverBackgroundColor: #ff9100;
   }
   
   .login {
@@ -182,7 +184,8 @@
   }
   
   .login label {
-	background-color: var(--loginLabelBackgroundColor);
+	background-color: orange ;
+  /* color_here  var(--loginLabelBackgroundColor)*/
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 	padding-inline: 1.25rem;
@@ -191,7 +194,8 @@
   .login input[type="password"],
   .login input[type="text"],
   .login input[type="email"] {
-	background-color: var(--loginInputBackgroundColor);
+	background-color: white;
+  /* color_here */
 	border-bottom-left-radius: 0;
 	border-top-left-radius: 0;
   }
@@ -202,11 +206,13 @@
   .login input[type="text"]:hover,
   .login input[type="email"]:focus,
   .login input[type="email"]:hover {
-	background-color: var(--loginInputHoverBackgroundColor);
+	background-color: white;
+  /* color_here */
   }
   
   .login input[type="submit"] {
-	background-color: var(--loginSubmitBackgroundColor);
+	background-color: orange;
+  /* color_here */
 	color: var(--loginSubmitColor);
 	font-weight: 700;
 	text-transform: uppercase;
