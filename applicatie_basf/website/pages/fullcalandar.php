@@ -1,6 +1,7 @@
 <?php
 
-include_once("calandar-class.php");
+include "includes/dhp.inc.php";
+include "includes/calandar.inc.php";
 
 $Calandar = new Calandar();
 ?>

@@ -1,12 +1,23 @@
 <?php
+
 include "../connection/config.php";
 include "../account/account.php";
+include "includes/dhp.inc.php";
+include "includes/dashboard.inc.php";
+
+$connect = new Dhb;
+
+$Dashboard_class = new Dashboard();
+$aantal_ongelezen_meldingen = $Dashboard_class->Ongelezen_meldingen();
+$aantal_bussen = $Dashboard_class->aantal_bussen();
 
 session_start();
 
 $_user = $_SESSION["_user"];
 
 $_SESSION["news_aantal_keren"] = 5;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -146,7 +157,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Aantal bussen</div>
-              <div class="number">4</div>
+              <div class="number"><?php echo $aantal_bussen ?></div>
               <div class="indicator">
               </div>
             </div>
@@ -155,7 +166,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Ongelezen meldingen</div>
-              <div class="number">0</div>
+              <div class="number"> <?php echo  $aantal_ongelezen_meldingen ?> </div>
               <div class="indicator">
               </div>
             </div>
@@ -228,73 +239,27 @@ $_SESSION["news_aantal_keren"] = 5;
           <!-- =======================Meldingen=============================== -->
           <div class="top-sales box scrollbardiv">
             <div class="title">Meldingen</div>
-            <!-- <div class="sales-details">
-              <ul class="details">
-                <li class="topic">Naam</li>
-                <li>Keramiek</li>
-                <li>Metalen</li>
-                <li>Kunststoffen</li>
-                <li>Hout</li>
-                <li>Textiel</li>
-              </ul>
-              <ul class="details">
-                <li class="topic">Aantal</li>
-                <li>9</li>
-                <li>3</li>
-                <li>1</li>
-                <li>7</li>
-                <li>5</li>
-              </ul>
-            </div> -->
             <section>
               <div class="square_box box_three"></div>
               <div class="square_box box_four"></div>
               <div class="container mt-5">
                 <div class="row">
 
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-03-26</strong><br>Controleer of uw gegevens nog kloppen
+                  <?php
+                  $design = ["alert-success", "alert-info", "alert-warning", "alert-danger", "alert-primary", "alert-extra"];
+                  $count = 0;
+                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE active = 0');
+                  while($row = $meldingen->fetch()){
+                    ?>
+                    <div class="col-sm-12">
+                    <div class="alert fade alert-simple <?php echo $design[$count] ?> alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
+                      <strong class="font__weight-semibold"><?php echo $row["entryDate"] ?></strong><br><?php echo $row["message"] ?>
                     </div>
                   </div>
-
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-info alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-23</strong><br>Het dragen van een mondkapje, is niet meer verplicht
-                    </div>
-
-                  </div>
-
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-warning alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-17</strong><br>Als iets niet goed werkt, meld het aan
-                    </div>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-danger alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-14</strong><br>We hebben snel aanvullende gegevens van u nodig
-                    </div>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-primary alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show" role="alert" data-brk-library="component__alert">
-                      <strong class="font__weight-semibold">2021-03-11</strong><br>Goed nieuws! salarissen gaan omhoog
-                    </div>
-                  </div>
-
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-extra alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-02-21</strong><br>Vanaf vandaag kunt u weer uw belastingaangifte doen 
-                    </div>
-                  </div>
-
-                  <!-- Let wel: corona is niet weg  -->
-                  <div class="col-sm-12">
-                    <div class="alert fade alert-simple alert-success alert-dismissible text-left font__family-montserrat font__size-16 font__weight-light brk-library-rendered rendered show">
-                      <strong class="font__weight-semibold">2021-02-16</strong><br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis autem architecto unde sunt expedita repellendus corrupti similique, cumque quae quisquam, quod voluptates consequuntur eum molestiae nemo. Aliquid laborum quo ipsa.
-                    </div>
-                  </div>
+                    <?php
+                    $count ++;
+                  }
+                  ?>
 
                 </div>
               </div>

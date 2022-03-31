@@ -1,23 +1,16 @@
 <?php
 session_start();
 
-class Calandar
+class Calandar extends Dhb
 {
-    // con var aanmaken
-    public $connect;
-
-    public function __construct()
-    {
-        $this->connect = new PDO('mysql:host=localhost;dbname=basf_db', 'root', '');
-    }
     //Load function aanmaken
     public function Load()
     {
         $data = array();
 
-        $query = "SELECT * FROM events WHERE userid = '$_SESSION[ingelogd_userID]' ORDER BY id";
+        $query = "SELECT * FROM event WHERE userID = '$_SESSION[ingelogd_userID]' ORDER BY eventID";
 
-        $statement = $this->connect->prepare($query);
+        $statement = $this->connect()->prepare($query);
 
         $statement->execute();
 
@@ -25,10 +18,10 @@ class Calandar
 
         foreach ($result as $row) {
             $data[] = array(
-                'id'   => $row["id"],
-                'title'   => $row["title"],
-                'start'   => $row["start_event"],
-                'end'   => $row["end_event"]
+                'id'   => $row["eventID"],
+                'title'   => $row["eventTitle"],
+                'start'   => $row["eventStart"],
+                'end'   => $row["eventEnd"]
             );
         }
 
@@ -39,11 +32,11 @@ class Calandar
     {
         if (isset($_POST["title"])) {
             $query = "
-            INSERT INTO events 
-            (userid, title, start_event, end_event) 
+            INSERT INTO event 
+            (userid, eventTitle, eventStart, eventEnd) 
             VALUES (:userid, :title, :start_event, :end_event)
             ";
-            $statement = $this->connect->prepare($query);
+            $statement = $this->connect()->prepare($query);
             $statement->execute(
                 array(
                     ':userid' => $_SESSION['ingelogd_userID'],
@@ -59,11 +52,11 @@ class Calandar
     {
         if (isset($_POST["id"])) {
             $query = "
-            UPDATE events 
-            SET title=:title, start_event=:start_event, end_event=:end_event 
-            WHERE id=:id
+            UPDATE event 
+            SET eventTitle=:title, eventStart=:start_event, eventEnd=:end_event 
+            WHERE eventID=:id
             ";
-            $statement = $this->connect->prepare($query);
+            $statement = $this->connect()->prepare($query);
             $statement->execute(
                 array(
                     ':title'  => $_POST['title'],
@@ -79,9 +72,9 @@ class Calandar
     {
         if (isset($_POST["id"])) {
             $query = "
-            DELETE from events WHERE id=:id
+            DELETE from event WHERE eventID=:id
             ";
-            $statement = $this->connect->prepare($query);
+            $statement = $this->connect()->prepare($query);
             $statement->execute(
                 array(
                     ':id' => $_POST['id']
