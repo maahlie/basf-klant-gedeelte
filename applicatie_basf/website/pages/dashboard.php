@@ -155,7 +155,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="box">
             <div class="right-side">
               <div class="box-topic">Ongelezen meldingen</div>
-              <div class="number">1</div>
+              <div class="number">0</div>
               <div class="indicator">
               </div>
             </div>
