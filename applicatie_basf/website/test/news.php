@@ -9,7 +9,7 @@ if (!$conn) {
 	exit();
 }
 
-$sql = "SELECT * FROM news WHERE id > (SELECT MAX(id) - 6 FROM news ORDER BY date DESC);";
+$sql = "SELECT * FROM news WHERE id > (SELECT COUNT(*) - 5 FROM news);"; //SELECT MAX(id) - 7 FROM news
 $res = mysqli_query($conn,  $sql);
 ?>
 <!DOCTYPE html>

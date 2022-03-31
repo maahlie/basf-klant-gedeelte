@@ -154,21 +154,12 @@ $_SESSION["news_aantal_keren"] = 5;
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Aantal Materialen</div>
-              <div class="number">7</div>
+              <div class="box-topic">Ongelezen meldingen</div>
+              <div class="number">1</div>
               <div class="indicator">
               </div>
             </div>
-            <i class='fas fa-boxes cart two'></i>
-          </div>
-          <div class="box">
-            <div class="right-side">
-              <div class="box-topic">De start tijd</div>
-              <div class="number">12:30</div>
-              <div class="indicator">
-              </div>
-            </div>
-            <i class='bx bxs-timer cart three'></i>
+            <i class='fas fa-bell cart two'></i>
           </div>
           <div class="box">
             <div class="right-side">
@@ -179,6 +170,15 @@ $_SESSION["news_aantal_keren"] = 5;
             </div>
             <i class='fas fa-calendar-week cart'></i>
           </div>
+          <div class="box">
+            <div class="right-side">
+              <div class="box-topic">Dag naam</div>
+              <div class="number" id="dag_naam"></div> <!-- See klant_dashboard.js file -->
+              <div class="indicator">
+              </div>
+            </div>
+            <i class='fas fa-calendar-plus cart two'></i>
+          </div>
           <div class="box meerboxs">
             <div class="right-side">
               <div class="box-topic">De huidige datum</div>
@@ -186,7 +186,7 @@ $_SESSION["news_aantal_keren"] = 5;
               <div class="indicator">
               </div>
             </div>
-            <i class='fas fa-calendar-plus cart'></i>
+            <i class='fas fa-calendar-check cart'></i>
           </div>
           <div class="box meerboxs">
             <div class="right-side">
