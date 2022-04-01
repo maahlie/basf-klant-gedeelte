@@ -236,16 +236,16 @@ class UserAccount{
         }
     }
 
-    public function showWork()
-    {
-        $list = $this->requestData("workCompName", "workcomp");
-        $row = $list->fetch_all();
+    // public function showWork()
+    // {
+    //     $list = $this->requestData("workCompName", "workcomp");
+    //     $row = $list->fetch_all();
         
-        for($i=0; $i<$list->num_rows; $i++)
-        {
-          echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
-        }
-    }
+    //     for($i=0; $i<$list->num_rows; $i++)
+    //     {
+    //       echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
+    //     }
+    // }
 
     //!---------------get functies----------------!
 

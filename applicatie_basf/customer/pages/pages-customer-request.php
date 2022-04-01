@@ -116,6 +116,25 @@ $_user = $_SESSION["_user"];
       }
     </script>
 
+    <!--ajax!-->
+    <script>
+      function changeWork(str) {
+        if (str.length == 0) {
+          document.getElementById("work").innerHTML = "";
+          return;
+        } else {
+          var xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("work").innerHTML = this.responseText;
+            }
+          };
+          xmlhttp.open("GET", "../planning/change_work.php?id=" + str, true);
+          xmlhttp.send();
+        }
+      }
+    </script>
+
   </head>
 
   <body>
@@ -387,9 +406,7 @@ $_user = $_SESSION["_user"];
                       <label>Werkzaamheid</label>
                       <div class="input-group">
                         <select id="work" name="_work_comp_'.$i.'" class="form-control">
-                        ';
-                        $_user->showWork();
-                        echo '
+
                         </select>
                       </div><br>
                   <label>Datum werkzaamheden</label>
@@ -439,7 +456,7 @@ $_user = $_SESSION["_user"];
                    </div>          
                    <label>Gewas</label>
                     <div class="input-group">
-                      <select id="crop" name="_crop" class="form-control">
+                      <select id="crop" name="_crop" class="form-control" onchange="changeWork(this.value)">
                       '; 
                       $_user->showDept();
                       echo '
@@ -448,9 +465,7 @@ $_user = $_SESSION["_user"];
                     <label>Werkzaamheid</label>
                     <div class="input-group">
                       <select id="work" name="_work_comp" class="form-control">
-                      ';
-                      $_user->showWork();
-                      echo '
+
                       </select>
                     </div><br>
                  <label>Datum werkzaamheden</label>
@@ -459,7 +474,9 @@ $_user = $_SESSION["_user"];
                         type="date"
                         class="form-control mydatepicker"
                         placeholder="mm/dd/yyyy"
-                        min="<?= date(Y-m-d); ?>"
+                        min=';
+                        echo date("Y-m-d");
+                        echo'
                         name="_task_Date"
                         required
                       />
@@ -536,7 +553,7 @@ $_user = $_SESSION["_user"];
 														// Vervorm de Unix Epoch (1 Jan 1970) tot de boeking datum om in dagen
 														$_date_time = date('U', $_date_time) / 86400;
 
-                            if (($_date_time - $_now) < 0) {
+                            if (($_date_time - $_now) > 0) {
                               echo
                               "<tr>
                               <form action='../planning/request-employees.php' method='post'>  
@@ -679,62 +696,3 @@ $_user = $_SESSION["_user"];
 
   </body>
 </html>
-<!--<form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
-                  <div class="form-group row">
-                  <label
-                     for="fname">Hoeveel werknemers zijn er nodig</label>
-                      <div class="col-sm-9">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="fname"
-                      placeholder="5, 10, 20"
-                      min="1"
-                      max="100"
-                      name="_task_Force"
-                      required
-                     />
-                   </div>
-                 </div>          
-                 <label>Gewas</label>
-                  <div class="input-group">
-                    <select id="crop" name="_crop" class="form-control">
-
-                    </select>
-                  </div><br>
-                  <label>Werkzaamheid</label>
-                  <div class="input-group">
-                    <select id="work" name="_work_comp" class="form-control">
-
-                    </select>
-                  </div><br>
-               <label>Datum werkzaamheden</label>
-                  <div class="input-group">
-                    <input
-                      type="date"
-                      class="form-control mydatepicker"
-                      placeholder="mm/dd/yyyy"
-                      min=""
-                      name="_task_Date"
-                      required
-                    />
-                  </div>
-                </div><br>
-                <div class="form-group row">
-                 <label
-                   for="cono1">Aanvullende informatie / omschrijving</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control"
-                          name="_task_Description"></textarea>
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="border-top">
-                    <div class="card-body">
-                      <button type="submit" class="btn btn-primary" name="_submit_Request">
-                        Verzend
-                      </button>
-                    </div>
-                  </div>
-                </form>-->

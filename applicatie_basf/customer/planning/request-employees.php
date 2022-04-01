@@ -8,7 +8,6 @@ session_start();
 $_user = $_SESSION["_user"];
 $db = new DataBase();
 
-
 if(isset($_POST['_submit_Request']))
 {
     if(isset($_POST['_num_rowsTxb'])){
