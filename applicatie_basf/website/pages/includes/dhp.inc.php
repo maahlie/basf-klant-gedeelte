@@ -1,5 +1,5 @@
 <?php
-
+// Database connection class
 class Dhb
 {
     private $servername;
