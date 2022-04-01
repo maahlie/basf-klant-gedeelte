@@ -32,7 +32,7 @@ $_user = $_SESSION["_user"];
         }
 
         .dark-theme {
-            --color: rgb(187, 40, 40);
+            --color: #2F576E;
         }
         body{
             overflow: hidden; /* Hide scrollbars */

@@ -1,8 +1,16 @@
 <?php
 
 session_start();
-$_SESSION["news_aantal_keren"];
 
+$conn = mysqli_connect("localhost", "root", "", "basf_db");
+
+if (!$conn) {
+	echo "Connection failed!";
+	exit();
+}
+
+$sql = "SELECT * FROM news WHERE id > (SELECT COUNT(*) - 5 FROM news);"; //SELECT MAX(id) - 7 FROM news
+$res = mysqli_query($conn,  $sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,29 +38,52 @@ $_SESSION["news_aantal_keren"];
 
         <?php
         $maanden = ["jan", "feb", "mrt", "apr", "mei", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
-        for ($i = 0; $i < $_SESSION["news_aantal_keren"]; $i++) { ?>
+        if (mysqli_num_rows($res) > 0) {
+          while ($images = mysqli_fetch_assoc($res)) {  ?>
           <div class="news-slider__item swiper-slide">
             <a href="#" class="news__item">
               <div class="news-date">
-                <span class="news-date__title"><?php echo mt_rand(1, 28); ?></span>
-                <span class="news-date__txt"><?php echo $maanden[array_rand($maanden)] ?></span>
+                <span class="news-date__title"><?php echo date("d",strtotime($images['date'])) ?></span>
+                <?php $getmonth = date("m",strtotime($images['date']));?>
+                <span class="news-date__txt"><?php echo $maanden[$getmonth-1] ?></span>
               </div>
               <div class="news__title">
-                Kom bij ons werken
+              <?=$images['title']?>
               </div>
 
-              <p class="news__txt">
-                Bij BASF zijn we ervan overtuigd dat mensen de sleutel zijn tot ons succes op lange termijn en dat iedereen over talent beschikt. Daarom hebben we u nodig.
+              <p class="news__txt" style="height: 90px;">
+              <?=$images['text']?>
               </p>
 
               <div class="news__img">
-                <!-- <img src="https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=889&q=80" alt="news"> -->
-                <!-- <img src="https://dynamicassets.basf.com/is/image/basf/27476_thinkstockphotos-469843461_crop:16x9?dpr=off&fmt=webp&fit=crop%2C1&wid=1280&hei=720" alt="news"> -->
-                <img src="../../assets/images/news.jpg" alt="news">
+                <img src="../../news_images/<?=$images['image']?>" alt="news">
               </div>
             </a>
           </div>
-        <?php } ?>
+        <?php } }else{?>
+          <div class="news-slider__item swiper-slide">
+          <a href="#" class="news__item">
+            <div class="news-date">
+              <span class="news-date__title"><?php echo date("j") ?></span>
+              <?php $getmonth = date("n");?>
+              <span class="news-date__txt"><?php echo $maanden[$getmonth-1] ?></span>
+            </div>
+            <div class="news__title">
+            Geen verslagen gevonden!
+            </div>
+
+            <p class="news__txt" style="height: 90px;">
+            Er zijn geen artikelen tot nu toe of er is een fout opgetreden!
+            </p>
+
+            <div class="news__img">
+              <img src="../../assets/images/news.jpg" alt="news">
+            </div>
+          </a>
+        </div>
+        <?php
+        }
+        ?>
 
       </div>
 
