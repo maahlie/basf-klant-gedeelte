@@ -53,6 +53,7 @@
 
         if ($inputHached == $code['code']) {
             $_SESSION["codeUsed"] = $code["codeID"];
+            $_SESSION["ingelogd_userID"] = $userID;
         }
     } else {
         $_SESSION['error'] = "onjuist"; 

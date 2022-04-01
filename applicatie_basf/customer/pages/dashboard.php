@@ -1,15 +1,28 @@
 <?php
+// Voeg ze hoe als ze niet bestaan om errors te voorkomen
+if(!isset($_COOKIE["aantal_nieuwe_meldingen"]) && !isset($_COOKIE["aantal_oude_meldingen"])){
+  setcookie("aantal_nieuwe_meldingen", 0, time() + 3600, "/");
+  setcookie("aantal_oude_meldingen", 0 , time() + 3600, "/");
+}
+
+// Files includen
 
 include "../connection/config.php";
 include "../account/account.php";
 include "includes/dhp.inc.php";
 include "includes/dashboard.inc.php";
 
+// Connect met de database
+
 $connect = new Dhb;
+
+// Class ophalen
 
 $Dashboard_class = new Dashboard();
 $aantal_ongelezen_meldingen = $Dashboard_class->Ongelezen_meldingen();
 $aantal_bussen = $Dashboard_class->aantal_bussen();
+
+// Start de session om session variablen te kunnen gebruiken
 
 session_start();
 
