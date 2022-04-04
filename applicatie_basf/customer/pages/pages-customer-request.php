@@ -133,6 +133,22 @@ $_user = $_SESSION["_user"];
           xmlhttp.send();
         }
       }
+
+      function changeWorkFor(str, id) {
+          if (str.length == 0) {
+            document.getElementById("work"+id).innerHTML = "";
+            return;
+          } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("work"+id).innerHTML = this.responseText;
+              }
+            };
+            xmlhttp.open("GET", "../planning/change_work.php?id=" + str, true);
+            xmlhttp.send();
+          }
+        }
     </script>
 
   </head>
@@ -397,7 +413,7 @@ $_user = $_SESSION["_user"];
                       </div>
                     <label>Gewas</label>
                       <div class="input-group">
-                        <select id="crop" name="_crop_'.$i.'" class="form-control">
+                        <select id="crop" name="_crop_'.$i.'" class="form-control" onchange="changeWorkFor(this.value, '.$i.')">
                         '; 
                         $_user->showDept();
                         echo '
@@ -405,7 +421,7 @@ $_user = $_SESSION["_user"];
                       </div><br>
                       <label>Werkzaamheid</label>
                       <div class="input-group">
-                        <select id="work" name="_work_comp_'.$i.'" class="form-control">
+                        <select id="work'.$i.'" name="_work_comp_'.$i.'" class="form-control">
 
                         </select>
                       </div><br>
