@@ -204,6 +204,15 @@ class UserAccount{
                     ><span class="hide-menu">Dashboard</span></a
                 >
             </li>
+            <li class="sidebar-item">
+                <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="../pages/pages-customer-compDeptLink.php"
+                    aria-expanded="false"
+                    ><i class="fas fa-edit"></i
+                    ><span class="hide-menu">Werkzaamheden</span></a
+                >
+            </li>
         <?php
     }
 
