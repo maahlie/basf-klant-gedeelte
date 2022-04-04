@@ -297,7 +297,7 @@ $_user = $_SESSION["_user"];
           <div class="row">
             <!-- column -->
 
-            <div class="col-md-12">
+            <!-- <div class="col-md-12">
             <div class="card">
                 <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
                   <div class="card-body">
@@ -368,7 +368,7 @@ $_user = $_SESSION["_user"];
                 </form>
               </div>
             </div>
-          </div>
+          </div> -->
             
             <div class="col-md-12">
             <div class="card" style="overflow:auto; height: 760px;">
