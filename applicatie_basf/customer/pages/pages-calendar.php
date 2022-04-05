@@ -200,115 +200,86 @@ $_user = $_SESSION["_user"];
      <div class="table-responsive">                  
    <div class="container">
    <div class="row">
-    <div class="col-12"><br>
-      <h4>Afdeling 1 </h4> <!--placeholder, dit zou bijvoorbeeld worden: afdeling CAC wortel-->
+     <?php
+      $_result_dept = $_user->requestData("*", "department");
+
+      $_depts = mysqli_fetch_all($_result_dept, MYSQLI_ASSOC);
+
+
+      
+      //laat alle departments zien
+      for ($i=0; $i < $_result_dept->num_rows; $i++){
+        $_result_planning = $_user->requestDataWhere("*", "planning", "departmentID", $_depts[$i]['departmentID']);
+        $_planning = mysqli_fetch_all($_result_planning, MYSQLI_ASSOC);
+        $_dates=[];
+        
+      echo '
+      <div name="afdeling" class="col-12"><br>
+      <h4>'.$_depts[$i]['departmentName'].'</h4>
       <div class="table-responsive">
         <table class="table table-bordered">
+
           <thead>
           <tr id="ROW1">  <!--Met de arrows kunnen wisselen tussen de weken, vooruit en terug kijken-->
               <th scope="col"> <button type="button" class="btn btn-info"><i class="fas fa-angle-left"></i></button>
               <button type="button" class="btn btn-info"><i class="fas fa-angle-right"></i></button>
-              </th>
-              <th scope="col">Ma 10-01</th> <!-- De datum staat nu nog statisch, dit zou samen met de vooruit/achteruit knoppen een functie kunnen worden -->
-              <th scope="col">Di 11-01</th>
-              <th scope="col">Wo 12-01</th>
-              <th scope="col">Do 13-01</th>
-              <th scope="col">Vr 14-01</th>
-              <th scope="col">Za 15-01</th>
-              <th scope="col">Zo 16-01</th>
+              </th>';
+              //maak voor elke dag van de week een table head, beginend met maandag, dit is nu alleen nog maar van volgende week
+              for($p=0; $p<7; $p++){
+
+                  $_days = [ '', '1 day', '2 days', '3 days', '4 days', '5 days', '6 days' ];
+                  $_date = date_create(date("Y-m-d", strtotime('monday next week')));
+                  
+                  if($p!=0){
+                    date_add($_date, date_interval_create_from_date_string($_days[$p]));
+                    $_date_real = date_format($_date, 'Y-m-d');
+                    $_date_usable = date_format($_date, 'y-m-d');
+                  }else{
+                    $_date_real = date_format($_date, 'Y-m-d');
+                    $_date_usable = date_format($_date, 'y-m-d');                  
+                  }
+                  
+                  array_push($_dates, $_date_real);
+
+                  echo '<th scope="col">'; echo $_date_usable; echo'</th>';
+
+              }
+              echo '
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Jans Janssen</th> <!--Naam werknemer-->
-              <td>3:00-12:00</td> 
-              <td>3:00-12:00</td> <!--Van hoelaat tot hoelaat-->
-              <td>12:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>Vrij</td> <!--Vrije dag-->
-              <td>Vrij</td>
-            </tr>
-            <tr>
-              <th scope="row">Justin Joosten </th>
-              <td>vrij</td>
-              <td>1:00-10:00</td>
-              <td>1:00-10:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-              <td>9:00-17:00</td>
-              <td>9:00-17:00</td>
-            </tr>
-            <tr>
-              <th scope="row">Jans Janssen</th>
-              <td>3:00-12:00</td>
-              <td>3:00-12:00</td>
-              <td>12:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-            </tr>
-            <tr>
-              <th scope="row">Justin Joosten </th>
-              <td>vrij</td>
-              <td>1:00-10:00</td>
-              <td>1:00-10:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-              <td>9:00-17:00</td>
-              <td>9:00-17:00</td>
-            </tr>
+          <tbody>';
+
+            //laat voor elk department dagdeel + naam zien van een werknemer
+          for($o=0; $o < $_result_planning->num_rows; $o++){
+            $_names = $_user->requestDataWhere("firstName, lastName", "employee", "userID", $_planning[$o]['userID']);
+            $_names_array = mysqli_fetch_all($_names, MYSQLI_ASSOC);
+
+            echo '
+              <tr>
+                <th scope="row">'.$_names_array[0]['firstName'].' '.$_names_array[0]['lastName'].'</th> <!--Naam werknemer-->';
+
+                for($v=0; $v<7; $v++){
+                  if($_planning[$o]['date']==$_dates[$v]){
+                    echo '<td>'.$_planning[$o]['dayPart'].'</td>';
+                  }else{
+                    echo '<td></td>';
+                  }
+                }
+
+              echo'  
+              </tr>';
+          }
+
+          echo '
           </tbody>
         </table>
       </div>
-    </div>
+    </div>';
+      }
+     ?>
   </div><br>
 
-  <div class="row">
-    <div class="col-12"><br>
-     <h4>Afdeling 2 </h4> <!--placeholder, dit zou bijvoorbeeld worden: afdeling CAC wortel-->
-      <table class="table table-bordered">
-        <thead>
-           <tr id="ROW1"> <!--Met de arrows kunnen wisselen tussen de weken, vooruit en terug kijken-->
-            <th scope="col"> <button type="button" class="btn btn-info"><i class="fas fa-angle-left"></i></button>
-            <button type="button" class="btn btn-info"><i class="fas fa-angle-right"></i></button>
-            </th>
-            <th scope="col">Ma 10-01</th>
-            <th scope="col">Di 11-01</th>
-            <th scope="col">Wo 12-01</th>
-            <th scope="col">Do 13-01</th>
-            <th scope="col">Vr 14-01</th>
-            <th scope="col">Za 15-01</th>
-            <th scope="col">Zo 16-01</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Jans Janssen</th>
-            <td>3:00-12:00</td>
-            <td>3:00-12:00</td>
-            <td>12:00-17:00</td>
-            <td>10:00-17:00</td>
-            <td>10:00-17:00</td>
-            <td>Vrij</td>
-            <td>Vrij</td>
-          </tr>
-          <tr>
-            <th scope="row">Justin Joosten </th>
-            <td>vrij</td>
-            <td>1:00-10:00</td>
-            <td>1:00-10:00</td>
-            <td>Vrij</td>
-            <td>Vrij</td>
-            <td>9:00-17:00</td>
-            <td>9:00-17:00</td>
-          </tr>
-         </tbody>
-        </table>
-       </div>
-      </div>
-    <br><br>
+  
 
       </div>
      </div>
