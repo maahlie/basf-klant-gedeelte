@@ -3,7 +3,6 @@ session_start();
 
 class Calandar extends Dhb
 {
-<<<<<<< HEAD:applicatie_basf/customer/pages/calandar-class.php
     // con var aanmaken
     public $connect;
 
@@ -11,19 +10,13 @@ class Calandar extends Dhb
     {
         $this->connect = new PDO('mysql:host=localhost;dbname=basfdb', 'root', '');
     }
-=======
->>>>>>> Dashboard:applicatie_basf/customer/pages/includes/calandar.inc.php
     //Load function aanmaken
     public function Load()
     {
         $data = array();
 
-<<<<<<< HEAD:applicatie_basf/customer/pages/calandar-class.php
         //als je ipv de session var 3 doet werkt het
         $query = "SELECT * FROM events WHERE userid = '$_SESSION[ingelogd_userID]' ORDER BY id";
-=======
-        $query = "SELECT * FROM event WHERE userID = '$_SESSION[ingelogd_userID]' ORDER BY eventID";
->>>>>>> Dashboard:applicatie_basf/customer/pages/includes/calandar.inc.php
 
         $statement = $this->connect()->prepare($query);
 
