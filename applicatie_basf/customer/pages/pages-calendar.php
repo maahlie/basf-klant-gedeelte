@@ -232,16 +232,14 @@ $_user = $_SESSION["_user"];
                   
                   if($p!=0){
                     date_add($_date, date_interval_create_from_date_string($_days[$p]));
-                    $_date_real = date_format($_date, 'Y-m-d');
-                    $_date_usable = date_format($_date, 'y-m-d');
+                    $_date_date = date_format($_date, 'Y-m-d');
                   }else{
-                    $_date_real = date_format($_date, 'Y-m-d');
-                    $_date_usable = date_format($_date, 'y-m-d');                  
+                    $_date_date = date_format($_date, 'Y-m-d');
                   }
                   
-                  array_push($_dates, $_date_real);
+                  array_push($_dates, $_date_date);
 
-                  echo '<th scope="col">'; echo $_date_usable; echo'</th>';
+                  echo '<th scope="col">'; echo date_format($_date, 'y-m-d'); echo'</th>';
 
               }
               echo '
