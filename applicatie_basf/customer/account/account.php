@@ -204,6 +204,15 @@ class UserAccount{
                     ><span class="hide-menu">Dashboard</span></a
                 >
             </li>
+            <li class="sidebar-item">
+                <a
+                    class="sidebar-link waves-effect waves-dark sidebar-link"
+                    href="../pages/pages-customer-compDeptLink.php"
+                    aria-expanded="false"
+                    ><i class="fas fa-edit"></i
+                    ><span class="hide-menu">Werkzaamheden</span></a
+                >
+            </li>
         <?php
     }
 
@@ -236,16 +245,16 @@ class UserAccount{
         }
     }
 
-    public function showWork()
-    {
-        $list = $this->requestData("workCompName", "workcomp");
-        $row = $list->fetch_all();
+    // public function showWork()
+    // {
+    //     $list = $this->requestData("workCompName", "workcomp");
+    //     $row = $list->fetch_all();
         
-        for($i=0; $i<$list->num_rows; $i++)
-        {
-          echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
-        }
-    }
+    //     for($i=0; $i<$list->num_rows; $i++)
+    //     {
+    //       echo '<option value="' . $row[$i][0] . '">' . $row[$i][0] . '</option>';
+    //     }
+    // }
 
     //!---------------get functies----------------!
 

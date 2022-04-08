@@ -8,7 +8,6 @@ session_start();
 $_user = $_SESSION["_user"];
 $db = new DataBase();
 
-
 if(isset($_POST['_submit_Request']))
 {
     if(isset($_POST['_num_rowsTxb'])){
@@ -20,12 +19,17 @@ if(isset($_POST['_submit_Request']))
             $_desc = $_POST['_task_Description_'.$i];
             $_department = $_POST['_crop_'.$i];
 
+            $_list_dep = $_user->requestData("*", "workComp");
+            while($_res2 = mysqli_fetch_array($_list_dep)){
+              $_works[$_res2['workCompID']] = $_res2['workCompName'];
+            }
+
             $_data = array (
                 array("reqStaff", $_employees),
                 array("descr", $_desc),
                 array("date", $_date),
                 array("departmentID", $_department),
-                array("workCompName", $_work),
+                array("workCompName", $_works[$_work]),
                 array("userID", $_user->getTableID())
             );
 
@@ -42,13 +46,17 @@ if(isset($_POST['_submit_Request']))
         $_desc = $_POST['_task_Description'];
         $_department = $_POST['_crop'];
 
+        $_list_dep = $_user->requestData("*", "workComp");
+        while($_res2 = mysqli_fetch_array($_list_dep)){
+          $_works[$_res2['workCompID']] = $_res2['workCompName'];
+        }
 
         $_data = array (
             array("reqStaff", $_employees),
             array("descr", $_desc),
             array("date", $_date),
             array("departmentID", $_department),
-            array("workCompName", $_work),
+            array("workCompName", $_works[$_work]),
             array("userID", $_user->getTableID())
         );
 
