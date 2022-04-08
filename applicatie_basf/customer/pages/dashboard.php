@@ -260,7 +260,7 @@ $_SESSION["news_aantal_keren"] = 5;
                   <?php
                   $design = ["alert-success", "alert-info", "alert-warning", "alert-danger", "alert-primary", "alert-extra"];
                   $count = 0;
-                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE messageID > (SELECT MAX(messageID) - 6 FROM dailymessage) AND active = 0');
+                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE messageID > (SELECT count(messageID) - 6 FROM dailymessage WHERE active = 0) AND active = 0 ORDER BY messageID DESC'); //MAX(messageID)
                   while($row = $meldingen->fetch()){
                     ?>
                     <div class="col-sm-12">

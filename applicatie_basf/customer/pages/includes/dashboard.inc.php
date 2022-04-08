@@ -7,10 +7,9 @@ class Dashboard extends Dhb
     // Ongelezen meldingen function
     public function Aantal_taken()
     {
-        // var aanmaken
-        $date = date("Y-m-d" , strtotime("+1 day"));
+        
         // Databases ophalen
-        $res = $this->connect()->query("SELECT COUNT(*) FROM event WHERE userID = '$_SESSION[ingelogd_userID]' AND eventEnd = '$date'");
+        $res = $this->connect()->query("SELECT COUNT(*) FROM event WHERE eventStart < NOW() AND eventEnd > NOW() AND userID = '$_SESSION[ingelogd_userID]'");
         $num_rows = $res->fetchColumn();
         return $num_rows;
 
