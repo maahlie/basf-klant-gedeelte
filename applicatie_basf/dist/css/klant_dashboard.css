@@ -141,11 +141,15 @@
 .home-content .sales-boxes .recent-sales {
     width: 65%;
     background-color: var(--green);
+    color: var(--black);
     margin: 0 20px 20px 20px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
-
+#recent-sales{
+    margin: 0 20px 20px 0px;
+    
+}
 .full {
     width: 100% !important;
 }
@@ -181,11 +185,13 @@
 .sales-boxes .sales-details li.topic {
     font-size: 20px;
     font-weight: 500;
+    padding: 0px 5px 30px 5px;
 }
 
 .sales-boxes .sales-details li {
     list-style: none;
     margin: 8px 0;
+    padding-bottom: 10px;
 }
 
 .sales-boxes .sales-details li a {
@@ -369,6 +375,9 @@
     }
     .calandar {
         height: 396px;
+    }
+    #recent-sales{
+        margin: 0 20px 20px 20px;
     }
 }
 

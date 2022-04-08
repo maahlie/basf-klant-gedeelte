@@ -14,12 +14,16 @@ $connect = new Dhb;
 // Class ophalen
 
 $Dashboard_class = new Dashboard();
-// $aantal_ongelezen_meldingen = $Dashboard_class->Ongelezen_meldingen();
-$aantal_bussen = $Dashboard_class->aantal_bussen();
 
-// Start de session om session variablen te kunnen gebruiken
+$aantal_taken = $Dashboard_class->Aantal_taken();
 
-session_start();
+$aantal_bussen = $Dashboard_class->Aantal_bussen();
+
+// Start de session als het niet gestart is om session variablen te kunnen gebruiken
+
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
 
 $_user = $_SESSION["_user"];
 
@@ -173,12 +177,12 @@ $_SESSION["news_aantal_keren"] = 5;
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Ongelezen meldingen</div>
-              <div class="number"> 0 </div> <?php //echo  $aantal_ongelezen_meldingen ?>
+              <div class="box-topic">Vandaag taken</div>
+              <div class="number"> <?php echo  $aantal_taken ?> </div>
               <div class="indicator">
               </div>
             </div>
-            <i class='fas fa-bell cart two'></i>
+            <i class='fas fa-tasks cart two'></i>
           </div>
           <div class="box">
             <div class="right-side">
@@ -256,7 +260,7 @@ $_SESSION["news_aantal_keren"] = 5;
                   <?php
                   $design = ["alert-success", "alert-info", "alert-warning", "alert-danger", "alert-primary", "alert-extra"];
                   $count = 0;
-                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE active = 0');
+                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE messageID > (SELECT MAX(messageID) - 6 FROM dailymessage) AND active = 0');
                   while($row = $meldingen->fetch()){
                     ?>
                     <div class="col-sm-12">
@@ -278,11 +282,74 @@ $_SESSION["news_aantal_keren"] = 5;
         <div class="sales-boxes">
           <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/nunhem_nederland_2749759_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-          <!-- roermond_nederland_2748000  /////  nunhem_nederland_2749759  -->
-
-          <!-- <div class="recent-sales box color"> -->
-          <iframe src="news.php" frameborder="0" class="news" scrolling="no" id="news"></iframe>
-          <!-- </div> -->
+          <!-- =========================================================== -->
+          <div class="recent-sales box" id="recent-sales">
+          <div class="title">Bussen overzicht</div>
+          <div class="sales-details">
+            <ul class="details">
+              <li class="topic">Naam</li>
+              <?php
+              $count = 0;
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              while($row = $busNaam->fetch()){
+                $naamArray = explode(',', $row['busType']);
+                ?>
+                <li><?php echo $naamArray[0]; ?></li>
+              <?php
+                $count++;
+              }
+              ?>
+            </ul>
+            <ul class="details">
+              <li class="topic">Kenteken</li>
+              <?php
+              $count = 0;
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              while($row = $busNaam->fetch()){
+                $naamArray = explode(',', $row['busType']);
+                ?>
+                <li><?php echo $naamArray[1]; ?></li>
+              <?php
+                $count++;
+              }
+              ?>
+            </ul>
+            <ul class="details">
+              <li class="topic">Type</li>
+              <?php
+              $count = 0;
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              while($row = $busNaam->fetch()){
+                $naamArray = explode(',', $row['busType']);
+                ?>
+                <li><?php if(isset($naamArray[2])){
+                  echo $naamArray[2];
+                }else{
+                  echo "kleine bus";
+                } ?></li>
+              <?php
+                $count++;
+              }
+              ?>
+            </ul>
+            <ul class="details">
+              <li class="topic">Aantal</li>
+              <?php
+              $count = 0;
+              $busNaam = $connect->connect()->query('SELECT busAmount FROM bus ORDER BY busID DESC LIMIT 10');
+              while($row = $busNaam->fetch()){
+                ?>
+                <li><?php echo $row["busAmount"]; ?></li>
+              <?php
+                $count++;
+              }
+              ?>
+            </ul>
+          </div>
+          <div class="button">
+            <a href="material.php">Alles zien</a>
+          </div>
+        </div>
         </div>
       </div>
       <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
