@@ -256,11 +256,12 @@ $_SESSION["news_aantal_keren"] = 5;
               <div class="square_box box_four"></div>
               <div class="container mt-5">
                 <div class="row">
-
+                  <!-- Meldingen ophalen van database -->
                   <?php
                   $design = ["alert-success", "alert-info", "alert-warning", "alert-danger", "alert-primary", "alert-extra"];
                   $count = 0;
-                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE messageID > (SELECT count(messageID) - 6 FROM dailymessage WHERE active = 0) AND active = 0 ORDER BY messageID DESC'); //MAX(messageID)
+                  // $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE messageID > (SELECT count(messageID) - 6 FROM dailymessage WHERE active = 0) AND active = 0 ORDER BY messageID DESC'); //MAX(messageID)
+                  $meldingen = $connect->connect()->query('SELECT * FROM dailymessage WHERE active = 0 ORDER BY messageID DESC LIMIT 6');
                   while($row = $meldingen->fetch()){
                     ?>
                     <div class="col-sm-12">
@@ -272,13 +273,12 @@ $_SESSION["news_aantal_keren"] = 5;
                     $count ++;
                   }
                   ?>
-
+                  <!-- Meldingen opgehaald -->
                 </div>
               </div>
             </section>
           </div>
         </div>
-        <!-- //////////////////////////////Proberen//////////////////////////////// -->
         <div class="sales-boxes">
           <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/nunhem_nederland_2749759_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
@@ -290,7 +290,7 @@ $_SESSION["news_aantal_keren"] = 5;
               <li class="topic">Naam</li>
               <?php
               $count = 0;
-              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus LIMIT 11');
               while($row = $busNaam->fetch()){
                 $naamArray = explode(',', $row['busType']);
                 ?>
@@ -304,7 +304,7 @@ $_SESSION["news_aantal_keren"] = 5;
               <li class="topic">Kenteken</li>
               <?php
               $count = 0;
-              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus LIMIT 11');
               while($row = $busNaam->fetch()){
                 $naamArray = explode(',', $row['busType']);
                 ?>
@@ -318,14 +318,14 @@ $_SESSION["news_aantal_keren"] = 5;
               <li class="topic">Type</li>
               <?php
               $count = 0;
-              $busNaam = $connect->connect()->query('SELECT busType FROM bus ORDER BY busID DESC LIMIT 10');
+              $busNaam = $connect->connect()->query('SELECT busType FROM bus LIMIT 11');
               while($row = $busNaam->fetch()){
                 $naamArray = explode(',', $row['busType']);
                 ?>
                 <li><?php if(isset($naamArray[2])){
                   echo $naamArray[2];
                 }else{
-                  echo "kleine bus";
+                  echo "Kleine bus";
                 } ?></li>
               <?php
                 $count++;
@@ -336,7 +336,7 @@ $_SESSION["news_aantal_keren"] = 5;
               <li class="topic">Aantal</li>
               <?php
               $count = 0;
-              $busNaam = $connect->connect()->query('SELECT busAmount FROM bus ORDER BY busID DESC LIMIT 10');
+              $busNaam = $connect->connect()->query('SELECT busAmount FROM bus LIMIT 11');
               while($row = $busNaam->fetch()){
                 ?>
                 <li><?php echo $row["busAmount"]; ?></li>
