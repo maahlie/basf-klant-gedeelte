@@ -177,7 +177,7 @@ $_SESSION["news_aantal_keren"] = 5;
           </div>
           <div class="box">
             <div class="right-side">
-              <div class="box-topic">Vandaag taken</div>
+              <div class="box-topic">Agenda taken</div>
               <div class="number"> <?php echo  $aantal_taken ?> </div>
               <div class="indicator">
               </div>
