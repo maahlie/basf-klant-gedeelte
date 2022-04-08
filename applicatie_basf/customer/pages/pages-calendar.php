@@ -205,8 +205,6 @@ $_user = $_SESSION["_user"];
 
       $_depts = mysqli_fetch_all($_result_dept, MYSQLI_ASSOC);
 
-
-      
       //laat alle departments zien
       for ($i=0; $i < $_result_dept->num_rows; $i++){
         $_result_planning = $_user->requestDataWhere("*", "planning", "departmentID", $_depts[$i]['departmentID']);
@@ -240,7 +238,6 @@ $_user = $_SESSION["_user"];
                   array_push($_dates, $_date_date);
 
                   echo '<th scope="col">'; echo date_format($_date, 'y-m-d'); echo'</th>';
-
               }
               echo '
             </tr>
@@ -249,24 +246,30 @@ $_user = $_SESSION["_user"];
 
             //laat voor elk department dagdeel + naam zien van een werknemer
           for($o=0; $o < $_result_planning->num_rows; $o++){
-            $_names = $_user->requestDataWhere("firstName, lastName", "employee", "userID", $_planning[$o]['userID']);
-            $_names_array = mysqli_fetch_all($_names, MYSQLI_ASSOC);
+            $_userdata = $_user->requestDataWhere("*", "employee", "userID", $_planning[$o]['userID']);
+            $_userdata_array = mysqli_fetch_all($_userdata, MYSQLI_ASSOC);
 
-            echo '
-              <tr>
-                <th scope="row">'.$_names_array[0]['firstName'].' '.$_names_array[0]['lastName'].'</th> <!--Naam werknemer-->';
+            if(!isset($_previous_user)){
+              $_previous_user = '';
+            }
+
+              if($_planning[$o]['userID']!=$_previous_user){
+                echo '<tr>';
+                echo '<th scope="row">'.$_userdata_array[0]['firstName'].' '.$_userdata_array[0]['lastName'].'</th> <!--Naam werknemer-->';
+              
 
                 for($v=0; $v<7; $v++){
-                  if($_planning[$o]['date']==$_dates[$v]){
-                    echo '<td>'.$_planning[$o]['dayPart'].'</td>';
-                  }else{
-                    echo '<td></td>';
+                  if($_planning[$o]['date']==$_dates[$v])
+                  {
+                    echo '<td>'.$_planning[$o]['dayPart'].' '.$_planning[$o]['planningID'].'</td>';
                   }
                 }
+                echo'</tr>';
+              }
 
-              echo'  
-              </tr>';
+            $_previous_user = $_planning[$o]['userID'];
           }
+
 
           echo '
           </tbody>
