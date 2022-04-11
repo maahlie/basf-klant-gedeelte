@@ -33,7 +33,6 @@
 .contact-form-textarea{
 width: 100%;
 height: 130px;
-
 }
 
 #customers {
@@ -64,4 +63,29 @@ height: 130px;
       font-size: 1.2vw;
   }
   
+  #start-date{
+    font-size: 1.2vw;
+  }
+
+  #end-date{
+    font-size: 1.2vw;
+  }
   
+
+  @media only screen and (max-width: 650px) {
+    #bustext {
+      font-size: 2.8vw;
+    }
+
+    #customers {
+      font-size: 2.8vw;
+    }
+
+    #start-date{
+      font-size: 2.8vw;
+    }
+  
+    #end-date{
+      font-size: 2.8vw;
+    }
+  }
