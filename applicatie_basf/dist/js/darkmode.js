@@ -1,3 +1,4 @@
+
 // Function for darkmode
 
 var change = document.getElementById("change");

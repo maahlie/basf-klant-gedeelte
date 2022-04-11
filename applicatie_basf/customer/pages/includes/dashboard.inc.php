@@ -4,7 +4,7 @@ session_start();
 
 class Dashboard extends Dhb
 {
-    // Ongelezen meldingen function
+    // Aantal taken function
     public function Aantal_taken()
     {
         

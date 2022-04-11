@@ -248,7 +248,7 @@ $_SESSION["news_aantal_keren"] = 5;
           <div class="recent-sales box">
             <iframe class="calandar" scrolling="no" marginwidth="0" marginheight="0" hspace="0" vspace="0" frameborder="0" src="fullcalandar.php"></iframe>
           </div>
-          <!-- =======================Meldingen=============================== -->
+          <!-- =======================Begin Meldingen div=============================== -->
           <div class="top-sales box scrollbardiv">
             <div class="title">Meldingen</div>
             <section>
@@ -278,14 +278,16 @@ $_SESSION["news_aantal_keren"] = 5;
               </div>
             </section>
           </div>
+          <!-- =======================Eind Meldingen div=============================== -->
         </div>
         <div class="sales-boxes">
           <!-- =======================Iframe for weather=============================== -->
           <iframe class="weather" src="https://www.meteoblue.com/nl/weather/widget/three/nunhem_nederland_2749759_%d8%a7%d9%8a%d8%b7%d8%a7%d9%84%d9%8a%d8%a7_2524907?geoloc=fixed&days=4&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&layout=image" frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
-          <!-- =========================================================== -->
+          <!-- =======================Begin bussen div=============================== -->
           <div class="recent-sales box" id="recent-sales">
           <div class="title">Bussen overzicht</div>
           <div class="sales-details">
+            <!-- Namen van de bussen ophalen van de database -->
             <ul class="details">
               <li class="topic">Naam</li>
               <?php
@@ -300,6 +302,9 @@ $_SESSION["news_aantal_keren"] = 5;
               }
               ?>
             </ul>
+            <!-- Namen van de bussen opgehaald van de database -->
+
+            <!-- Kenteken van de bussen ophalen van de database -->
             <ul class="details">
               <li class="topic">Kenteken</li>
               <?php
@@ -314,6 +319,9 @@ $_SESSION["news_aantal_keren"] = 5;
               }
               ?>
             </ul>
+            <!-- Kenteken van de bussen opgehaald van de database -->
+
+            <!-- type van de bussen ophalen van de database -->
             <ul class="details">
               <li class="topic">Type</li>
               <?php
@@ -332,6 +340,9 @@ $_SESSION["news_aantal_keren"] = 5;
               }
               ?>
             </ul>
+            <!-- type van de bussen opgehaald van de database -->
+
+            <!-- Hoeveelheid van de bussen ophalen van de database -->
             <ul class="details">
               <li class="topic">Aantal</li>
               <?php
@@ -345,15 +356,15 @@ $_SESSION["news_aantal_keren"] = 5;
               }
               ?>
             </ul>
+            <!-- Hoeveelheid van de bussen opgehaald van de database -->
           </div>
           <div class="button">
             <a href="material.php">Alles zien</a>
           </div>
         </div>
+        <!-- =======================Eind bussen div=============================== -->
         </div>
       </div>
-      <!-- ===========================xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx===================================-->
-      <!-- <iframe src="news.php" frameborder="0" class="news" scrolling="no"></iframe> -->
       <!-- ==============================================================-->
       <!-- Main -->
       <!-- ============================================================== -->
