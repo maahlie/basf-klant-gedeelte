@@ -420,11 +420,6 @@ class UserAccount{
         $this->_database->deleteData($_table, $_where, $_value);
     }
 
-    public function getWeekNum()
-    {
-        
-    }
-
     // Verwijder data uit de database op basis van 2 waarden
     public function removeDataAnd($_table, $_where1, $_value1, $_where2, $_value2)
     {

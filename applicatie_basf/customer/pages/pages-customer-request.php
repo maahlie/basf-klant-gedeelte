@@ -39,8 +39,9 @@ $_user = $_SESSION["_user"];
     />
     <script>
 
-      function submitUpdate() {
+      function submitUpdate() { //passed de updated gegevens naar een textbox die het als post submit
 
+        //getElementsByClassName haalt alle elementen met de opgevraagde klasse naam op in een array
         let columnTable = document.getElementsByClassName("editTd");
         let columnTxb = document.getElementsByClassName("updateTxb");
 
@@ -52,7 +53,9 @@ $_user = $_SESSION["_user"];
       }
 
 
-      function hideForm() {
+      function hideForm() { //functie die het overschakelen van bekijken van de aanvragen naar bewerken mogelijk maakt
+
+        //haalt alle elementen op die bewerkt moeten worden
         let column = document.getElementsByClassName("editTd");
         let confirm_btn = document.getElementsByClassName("btn_confirm");
         let delete_btn = document.getElementsByClassName("btn_delete");
@@ -64,8 +67,7 @@ $_user = $_SESSION["_user"];
         let crop_name = document.getElementsByClassName("_crop_name");
         let work_name = document.getElementsByClassName("_work_name");
 
-
-        if(column[0].contentEditable  == 'false')
+        if(column[0].contentEditable  == 'false') //als de tabel niet bewerkbaar is, maak hem bewerkbaar
         {
 
           edit_btn.innerHTML = "Stop";
@@ -90,7 +92,7 @@ $_user = $_SESSION["_user"];
             work_name[i].style.display = 'none';
           }
 
-        } else {
+        } else {  //als hij wel bewerkbaar is, maak hem niet meer bewerkbaar
 
           edit_btn.innerHTML = "Bewerk";
           edit_btn.style.color = "";
@@ -118,23 +120,23 @@ $_user = $_SESSION["_user"];
 
     <!--ajax!-->
     <script>
-      function changeWork(str) {
+      function changeWork(str) {  //maakt een xmlhttp request om php asynchroon uit te voeren
         if (str.length == 0) {
           document.getElementById("work").innerHTML = "";
           return;
         } else {
           var xmlhttp = new XMLHttpRequest();
-          xmlhttp.onreadystatechange = function() {
+          xmlhttp.onreadystatechange = function() { //creer de functie die uitgevoerd wordt wanneer de request gemaakt is
             if (this.readyState == 4 && this.status == 200) {
               document.getElementById("work").innerHTML = this.responseText;
             }
           };
-          xmlhttp.open("GET", "../planning/change_work.php?id=" + str, true);
+          xmlhttp.open("GET", "../planning/change_work.php?id=" + str, true); //vraag de juiste werkzaamheden aan
           xmlhttp.send();
         }
       }
 
-      function changeWorkFor(str, id) {
+      function changeWorkFor(str, id) { //exact hetzelfde alleen voor meerdere requests tegelijk
           if (str.length == 0) {
             document.getElementById("work"+id).innerHTML = "";
             return;
@@ -296,79 +298,6 @@ $_user = $_SESSION["_user"];
         <div class="container-fluid">
           <div class="row">
             <!-- column -->
-
-            <!-- <div class="col-md-12">
-            <div class="card">
-                <form class="form-horizontal" action="../planning/request-employees.php" method="post"> 
-                  <div class="card-body">
-                    <h4 class="card-title">Werk indeling</h4><br>
-                  <div class="col-lg-6">
-                  
-                  <div class="form-group row">
-                  <label
-                     for="fname">Week </label>
-                      <div class="col-sm-9">
-                    <input
-                      type="number"
-                      class="form-control"
-                      id="fname"
-                      placeholder="..."
-                      min="1"
-                      max="52"
-                      name="_task_Force"
-                     />
-                   </div>
-                 </div>          
-               <label>Gewas</label>
-                  <div class="input-group">
-                  <input list="crop" class="form-control" placeholder="...">
-                    <datalist id="crop">
-
-                    </datalist>
-                  </div>
-                </div><br>
-                <div class="form-group row">
-                 <label
-                   for="cono1">Werkindeling</label>
-                   <div class="col-lg-6">
-                   <div class="table-responsive">   
-                    <table class="table table-striped table-bordered">
-                      <thead>
-                        <tr>
-                          <th>Ma.</th>
-                          <th>Di.</th>
-                          <th>Wo.</th>
-                          <th>Do.</th>
-                          <th>Vr.</th>
-                          <th>Za.</th>
-                          <th>Zo.</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th>Joep<br>Ton<br>Egbert</th>
-                          <th>Joep<br>Ton<br>Egbert</th>
-                          <th>Joep<br>Ton<br>Egbert</th>
-                          <th>Gijs<br>Rick<br>Joop</th>
-                          <th>Gijs<br>Rick<br>Joop</th>
-                          <th>Ricardo<br>Guy<br>Tom</th>
-                          <th>Ricardo<br>Guy<br>Tom</th>
-                        </tr>
-                      </tbody>
-                    </table> 
-                  </div>
-                </div>
-                  <div class="border-top">
-                    <div class="card-body">
-                      <button type="submit" class="btn btn-primary" name="_submit_Task">
-                        Toon werkindeling
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div> -->
             
             <div class="col-md-12">
             <div class="card" style="overflow:auto; height: 760px;">
@@ -391,6 +320,7 @@ $_user = $_SESSION["_user"];
                     <br>
                     <form class="form-horizontal" action="../planning/request-employees.php" method="post">
                   <?php
+                  //als het nummer van requests bekend is maak de bulkaanvragen aan
                   if(isset($_POST['num_rows'])){
                     $_num_rows = $_POST['num_rows'];
                     for($i=0; $i<$_num_rows; $i++){
@@ -446,13 +376,13 @@ $_user = $_SESSION["_user"];
                           </div>
                         </div>';
                         
-                      if($i != $_num_rows-1){
+                      if($i != $_num_rows-1){ //als het NIET de laatste request is, maak er een balkje onder
                         echo '<hr style="color:black; height:5px;">';
-                      }else{
+                      }else{  //als het wel de laatste request is, laat het lijntje weg en sluit de div
                         echo '</div>';
                       }
                   }
-                  }else{
+                  }else{//als het nummer niet bekend is maak een enkele aanvraag aan
                     echo ' 
                     <div class="form-group row">
                     <label
@@ -569,7 +499,7 @@ $_user = $_SESSION["_user"];
 														// Vervorm de Unix Epoch (1 Jan 1970) tot de boeking datum om in dagen
 														$_date_time = date('U', $_date_time) / 86400;
 
-                            if (($_date_time - $_now) > 0) {
+                            if (($_date_time - $_now) > 0) {  //haal alleen dingen op die niet in het verleden zijn
                               echo
                               "<tr>
                               <form action='../planning/request-employees.php' method='post'>  
@@ -577,7 +507,7 @@ $_user = $_SESSION["_user"];
                                 <td class='editTd' contenteditable='false'>". $_force. "</td>       <input type='hidden' class='updateTxb' id='_force' name='_force' value=''>
                                 <td class='editTd' contenteditable='false'>
                                 <select id='crop' name='_crop' style='display: none;' class='form-control input-group _task_dropdown'>";
-
+                                  //wanneer het bewerken geactiveerd is wordt deze select zichtbaar en haalt hij de mogelijke departments op, gebasseerd op de ingelogde gebruiker
                                 $list = $_user->requestDataWhere('departmentID, departmentName', 'department', 'customerID', $_user->getTableID());
                                 $row = $list->fetch_all();
                                 
@@ -591,7 +521,7 @@ $_user = $_SESSION["_user"];
                                 </td>        <input type='hidden' class='updateTxb updateTxb_crop' id='_crop' name='_crop2' value=''>
                                 <td class='editTd' contenteditable='false'><span class='_work_name' style='display: inline;'>". $_work. "</span>
                                 <select id='crop' name='_work' style='display: none;' class='form-control input-group _work_dropdown'>";
-
+                                  //zelfde als boven maar dan met werkzaamheden
                                 $db = new DataBase();
                                 $list = $db->getData("workCompName", "workcomp");
         

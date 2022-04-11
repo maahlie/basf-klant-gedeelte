@@ -4,14 +4,13 @@ include "../account/account.php";
 
 session_start();
 
-// Haal de gebruiker op
-$_user = $_SESSION["_user"];
+$_user = $_SESSION["_user"]; // Haal de gebruiker op
 
 $_dates[] = array();
 
-$_output ='';
+$_output =''; //maak de string aan waarin de hele planning tabel komt te staan
 
-$_now = date("Y-m-d");
+$_now = date("Y-m-d"); // haal de huidige datum op
 
 if(!isset($_SESSION['_planning_Week'])){ //als er nog geen sessie met week en jaar is, maak ze gebasseerd op huidige datum
   $_week_Nr = date("W", strtotime($_now));
@@ -232,6 +231,7 @@ foreach ($_departments as $_department) {
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
 
+    <!--styles voor de planning tabel-->
     <style>
     table {
         width: 100%;
@@ -448,25 +448,25 @@ foreach ($_departments as $_department) {
                 <label style="margin:8px; font-size:larger" for="week">Voor de week:</label>
                     <select id='week' name='week' style="width: 5%; margin:8px;" class='form-control input-group'>;
                         <?php
-                            $_num_weeks = date('W', strtotime('December 28th'));
+
+                            $_num_weeks = date('W', strtotime('December 28th'));  //haal de week waarin 28 dec valt op, die valt altijd in de laatste week
                             $_num_weeks++;
-                            for($i=1; $i<$_num_weeks; $i++)
+                            for($i=1; $i<$_num_weeks; $i++) //laat voor elke week een optie zien in de dropdown
                             {
-                              if($i==$_week_Nr){
+                              if($i==$_week_Nr){  //check of het week nummer al geselecteerd is
                                 echo '<option selected value="' . $i . '">' . $i . '</option>';
                               }else{
                                 echo '<option value="' . $i . '">' . $i . '</option>';
                               }
                             }
+
                         ?>
                     </select>
                     <button type="submit" class="btn btn-info" style="margin:8px;" name="_select_week">Toon planning</button>
     </form>
    <div class="row">
     <div class="col-12"><br>
-    <div class="table-responsive">
-      <?php echo $_output; ?>
-    </div>
+      <?php echo $_output; //toon de gemaakte tabel ?>
        </div>
       </div>
     <br><br>
