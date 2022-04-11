@@ -333,7 +333,7 @@ $_SESSION["news_aantal_keren"] = 5;
                 <li><?php if(isset($naamArray[2])){
                   echo $naamArray[2];
                 }else{
-                  echo "Kleine bus";
+                  echo "Normale bus";
                 } ?></li>
               <?php
                 $count++;
