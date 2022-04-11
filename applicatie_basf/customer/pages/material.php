@@ -37,6 +37,7 @@ for ($i=0; $i < 7; $i++)
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
   <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
@@ -59,6 +60,8 @@ for ($i=0; $i < 7; $i++)
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="../../dist/css/bussen.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   </head>
 
@@ -216,49 +219,19 @@ for ($i=0; $i < 7; $i++)
       $_name = explode(', ', $_res["busType"])[0];
       $_plate = explode(', ', $_res["busType"])[1];
       $_amount = $_res["busAmount"];
-      echo "<div><input type='checkbox' id='" . $_plate . "' value='" . $_value . "' name='bus[]'><label for='" . $_plate . "'>" . $_name . ', ' . $_plate . ', ' . $_amount . " personen</label></div>";
+      echo "<div><input type='checkbox' id='" . $_plate . "' value='" . $_value . "' name='bus[]'><label id='bustext' for='" . $_plate . "'>" . $_name . ', ' . $_plate . ', ' . $_amount . " personen</label></div>";
     }
   ?>
 
-        <style>
-          .contact-form-textarea{
-          width: 100%;
-          height: 130px;
-          
-        }
-          </style>
           <input type="date" id="start-date" name="startDate" required>
           <input type="date" id="end-date" name="endDate" required>
           <br><br>
           <input type="submit">
           </form>
-          <style>
           
-          #customers {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: small;
-            border-collapse: collapse;
-            width: 60%;
-          }
-
-          #customers td, #customers th {
-            border: 1px solid grey;
-            padding: 3px;
-          }
-
-          #customers tr:nth-child(even){background-color: #f2f2f2;}
-
-          #customers tr:hover {background-color: #27a9e3;}
-
-          #customers th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #3e5569;
-            color: white;
-          }
           
-          </style>
+        
+         
           
   <table id="customers" style="margin-top:-450px; margin-left:350px;">
     <tr>
