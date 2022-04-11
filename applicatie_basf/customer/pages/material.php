@@ -205,7 +205,8 @@ for ($i=0; $i < 7; $i++)
         </div>
         <!-- Container fluid  -->
         <div class="container-fluid">
-        
+        <div class="row">
+          <div class="col-4">
         <h3>Bussen</h3>
 <form action="../planning/insertbus.php" method="post">
         
@@ -229,11 +230,12 @@ for ($i=0; $i < 7; $i++)
           <input type="submit">
           </form>
           
-          
+          </div>
         
          
-          
-  <table id="customers" style="margin-top:-450px; margin-left:350px;">
+          <div class="col-8">
+
+  <table id="customers">
     <tr>
         <th>Bus</th>
         <?php
@@ -286,6 +288,9 @@ for ($i=0; $i < 7; $i++)
       }
     ?>
   </table>
+  </div>
+
+        </div>
   
        
         </div>

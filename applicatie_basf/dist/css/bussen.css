@@ -53,8 +53,8 @@ height: 130px;
   #customers tr:hover {background-color: #27a9e3;}
 
   #customers th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 5%;
+    padding-bottom: 5%;
     text-align: left;
     background-color: #27a9e3;
     color: white;
@@ -63,4 +63,5 @@ height: 130px;
   #bustext {
       font-size: 1.2vw;
   }
+  
   
