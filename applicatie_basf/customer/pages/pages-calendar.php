@@ -11,26 +11,16 @@ $_dates[] = array();
 
 $_output ='';
 
-
-
-// Haal de datum op
 $_now = date("Y-m-d");
-// Controleer of er al een sessie bestaat
-if (isset($_SESSION["_planning_Week"])) {
-  // Zoja, haal de gegevens uit de sessie
-  $_week_Nr = $_SESSION["_planning_Week"];
-  $_year = $_SESSION["_planning_Year"];
-}else {
-  // Zonee, haal het weeknummer en het jaartal uit de datum
+
+if(!isset($_SESSION['_planning_Week'])){ //als er nog geen sessie met week en jaar is, maak ze gebasseerd op huidige datum
   $_week_Nr = date("W", strtotime($_now));
-  $_week_Nr++;
+
   $_year = date("Y", strtotime($_now));
-
-  // Sla deze op in een sessie
-  $_SESSION["_planning_Week"] = $_week_Nr;
-  $_SESSION["_planning_Year"] = $_year;
+}else{                                //als die er wel is, gebruik die uit de sessie
+  $_week_Nr = $_SESSION['_planning_Week'];
+  $_year = $_SESSION['_planning_Year'];
 }
-
 
 $_date_Time = new DateTime();
 // Voor iedere loop
@@ -454,21 +444,24 @@ foreach ($_departments as $_department) {
        <div class="card-body">                 
      <div class="table-responsive">                  
    <div class="container">
-   <form action="pages-calendar.php" method="post"> <!-- Sla geselecteerde werkzaamheden op -->
+   <form action="../planning/planning.php" method="post"> <!-- Sla geselecteerde werkzaamheden op -->
                 <label style="margin:8px; font-size:larger" for="week">Voor de week:</label>
-                    <select id='week' name='week' style="width: 60%; margin:8px;" class='form-control input-group'>;
+                    <select id='week' name='week' style="width: 5%; margin:8px;" class='form-control input-group'>;
                         <?php
-                            $list = $_user->requestDataWhere('departmentID, departmentName', 'department', 'customerID', $_user->getTableID());
-                            $row = $list->fetch_all();
-
-                            for($i=1; $i<53; $i++)
+                            $_num_weeks = date('W', strtotime('December 28th'));
+                            $_num_weeks++;
+                            for($i=1; $i<$_num_weeks; $i++)
                             {
-                                    echo '<option value="' . $i . '">' . $i . '</option>';
+                              if($i==$_week_Nr){
+                                echo '<option selected value="' . $i . '">' . $i . '</option>';
+                              }else{
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                              }
                             }
                         ?>
                     </select>
-                    <button type="submit" class="btn btn-info" style="margin:8px;" name="_select_dept">Toon werkzaamheden</button>
-                </form>
+                    <button type="submit" class="btn btn-info" style="margin:8px;" name="_select_week">Toon planning</button>
+    </form>
    <div class="row">
     <div class="col-12"><br>
     <div class="table-responsive">
