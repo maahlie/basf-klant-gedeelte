@@ -104,6 +104,13 @@ class UserAccount{
         return $this->_address;
     }
 
+    // Haal data op uit de database tussen 2 waarden en geef deze
+    public function requestDataBetween($_select, $_table, $_between, $_b_Value1, $_b_Value2)
+    {
+        $_result = $this->_database->getDataBetween($_select, $_table, $_between, $_b_Value1, $_b_Value2);
+        return $_result;
+    }
+
     // Geef de stad
     public function getCity()
     {

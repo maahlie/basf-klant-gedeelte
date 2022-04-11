@@ -5,6 +5,33 @@ include "../account/account.php";
 session_start();
 
 $_user = $_SESSION["_user"];
+
+$_employees = array();
+$_list_emp = $_user->requestData("*", "employee");
+while($_res2 = mysqli_fetch_array($_list_emp)){
+  $_employees[$_res2['userID']] = $_res2['firstName']." ".$_res2['lastName'];
+}
+
+$_now = date("Y-m-d");
+$_week_Nr = date("W", strtotime($_now));
+  $_week_Nr++;
+  $_year = date("Y", strtotime($_now));
+
+$_day = array();
+
+$_date_Time =new DateTime();
+// Voor iedere loop
+for ($i=0; $i < 7; $i++) 
+{ 
+  // Haal de eerste dag op basis van het jaartal en weeknr en sla deze op als dd-mm
+  $_day[0] = $_date_Time->setISODate($_year, $_week_Nr)->format('d-m-Y');
+  // Bij iedere loop behalve de eerste
+  if ($i > 0) 
+  {
+    // Tel i dagen erbij op en sla deze op als dd-mm
+    $_day[$i] = $_date_Time->modify('+'. $i. ' days')->format('d-m-Y');
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -178,13 +205,7 @@ $_user = $_SESSION["_user"];
         
         <h3>Bussen</h3>
 <form action="../planning/insertbus.php" method="post">
-        <label for="cars">Week:</label>
-  <select id="cars" name="cars">
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-  </select>
+        
        
 
   <?php
@@ -208,23 +229,49 @@ $_user = $_SESSION["_user"];
           </style>
           <input type="date" id="start-date" name="startDate" required>
           <input type="date" id="end-date" name="endDate" required>
+          <br><br>
           <input type="submit">
           </form>
+          <style>
           
+          #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: small;
+            border-collapse: collapse;
+            width: 60%;
+          }
+
+          #customers td, #customers th {
+            border: 1px solid grey;
+            padding: 3px;
+          }
+
+          #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+          #customers tr:hover {background-color: #27a9e3;}
+
+          #customers th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #3e5569;
+            color: white;
+          }
           
-  <table>
+          </style>
+          
+  <table id="customers" style="margin-top:-450px; margin-left:350px;">
     <tr>
         <th>Bus</th>
-        <th>Maandag</th>
-        <th>Dinsdag</th>
-        <th>Woensdag</th>
-        <th>Donderdag</th>
-        <th>Vrijdag</th>
-        <th>Zaterdag</th>
-        <th>Zondag</th>
+        <?php
+            $_dates = array("Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag");
+            for ($i=0; $i < 7; $i++) { 
+                echo "<th>". $_dates[$i]. "<br>". $_day[$i]. "</th>";
+            }
+        ?>
+        
     </tr>
     <?php
-
 
       $_result = $_user->requestData("*", "bus");
        $date_now = date("Y-m-d");
@@ -241,30 +288,22 @@ $_user = $_SESSION["_user"];
         $_orderedBusses = $_user->requestDataWhere('*', 'orderbus', 'busID', $_value);
         $today = time();
         $wday = date('w', $today);   
-        
-        while ($_res = mysqli_fetch_array($_orderedBusses))
+         
+        while ($_res1 = mysqli_fetch_array($_orderedBusses))
         {
-          if ($date_now < $_res['dateEnd']) {
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 1)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 2)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 3)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 4)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 5)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 6)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
-            }
-            if ($_res['dateStart'] >= date('Y-m-d', $today - ($wday - 1)*86400) && $_res['dateStart'] <= date('Y-m-d', $today - ($wday - 7)*86400)) {
-              echo '<td>' . $_res["userID"] . '</td>';
+            
+        $_dateStart = strtotime(date("d-m-Y", strtotime($_res1['dateStart'])));
+        $_dateEnd = strtotime(date("d-m-Y", strtotime($_res1['dateEnd'])));
+        
+          if ($date_now < $_res1['dateEnd']) {
+            for ($i=0; $i < 7; $i++) {
+                $_dateDay = strtotime(date("d-m-Y", strtotime($_day[$i]))); 
+              if (($_dateStart <= $_dateDay) && ($_dateEnd >= $_dateDay)) {
+                echo '<td>' . $_employees[$_res1["userID"]] . '</td>';
+              }
+              else {
+                  echo '<td></td>';
+              }
             }
           }
         }
@@ -274,8 +313,7 @@ $_user = $_SESSION["_user"];
       }
     ?>
   </table>
-      
-
+  
        
         </div>
     

@@ -4,7 +4,194 @@ include "../account/account.php";
 
 session_start();
 
-$_user = $_SESSION["_user"];
+$_user = $_SESSION["_user"]; // Haal de gebruiker op
+
+$_dates[] = array();
+
+$_output =''; //maak de string aan waarin de hele planning tabel komt te staan
+
+$_now = date("Y-m-d"); // haal de huidige datum op
+
+if(!isset($_SESSION['_planning_Week'])){ //als er nog geen sessie met week en jaar is, maak ze gebasseerd op huidige datum
+  $_week_Nr = date("W", strtotime($_now));
+
+  $_year = date("Y", strtotime($_now));
+}else{                                //als die er wel is, gebruik die uit de sessie
+  $_week_Nr = $_SESSION['_planning_Week'];
+  $_year = $_SESSION['_planning_Year'];
+}
+
+$_date_Time = new DateTime();
+// Voor iedere loop
+for ($i=0; $i < 7; $i++) 
+{ 
+  // Haal de eerste dag op basis van het jaartal en weeknr en sla deze op als dd-mm
+  $_days[0] = $_date_Time->setISODate($_year, $_week_Nr)->format('d-m');
+  // Bij iedere loop behalve de eerste
+  if ($i > 0) 
+  {
+    // Tel i dagen erbij op en sla deze op als dd-mm
+    $_days[$i] = $_date_Time->modify('+'. $i. ' days')->format('d-m');
+  }
+}
+
+// Voor iedere loop
+for ($i=0; $i < 7; $i++) 
+{ 
+  // Ontleed de datums in dag en maand en stop deze in een array
+  $_date_Array = explode("-", $_days[$i]);
+  $_d = "";
+  $_m = "";
+  // Voor ieder deel
+  for($_i = 0; $_i < count($_date_Array); $_i++){
+      if($_i == 1)
+      {
+        // Sla op als maand
+        $_m = $_date_Array[$_i];
+      }else
+      {
+        // Sla op als dag
+        $_d = $_date_Array[$_i];
+      }
+  }
+  // Verwerk de gegevens in een string van de datum als yyyy-mm-dd
+  $_date = $_year. "-". $_m. "-". $_d;
+  // Sla deze op in de array op de index i
+  $_dates[$i] = $_date;
+}
+
+$_days = array();
+
+// Voor iedere loop
+for ($i=0; $i < 7; $i++) 
+{ 
+  // Haal de eerste dag op basis van het jaartal en weeknr en sla deze op als dd-mm
+  $_days[0] = $_date_Time->setISODate($_year, $_week_Nr)->format('d-m');
+  // Bij iedere loop behalve de eerste
+  if ($i > 0) 
+  {
+    // Tel i dagen erbij op en sla deze op als dd-mm
+    $_days[$i] = $_date_Time->modify('+'. $i. ' days')->format('d-m');
+  }
+}
+
+$_weekdays = array("Maandag", "Dinsdag", "Woensdag", "Donderdag","Vrijdag", "Zaterdag", "Zondag");
+
+// Haal alle actieve werknemers op
+$_list_Employees = $_user->requestData("*", "employee");
+// Per rij
+while ($_res = mysqli_fetch_array($_list_Employees)) 
+{
+  // Stop de werknemer in de array me de ID als index
+  $_employees[$_res["userID"]] = array($_res["userID"], $_res["firstName"]. " ". $_res["lastName"], $_res["telNumMobile"], $_res["clearanceLvl"], $_res["birthDate"]);
+}
+
+// Haal de afdelingen op
+$_list_Departments = $_user->requestData("*", "department");
+// Per rij
+while ($_res = mysqli_fetch_array($_list_Departments)) 
+{
+  // Stop de afdeling in de array met de ID als index
+  $_departments[$_res["departmentID"]] = array($_res["departmentName"], $_res["departmentID"], $_res["customerID"]);
+}
+
+$_planned = $_user->requestDataBetween("*", "planning", "date", $_dates[0], $_dates[6]);
+
+$_list_Planned = array();
+while ($_plan = mysqli_fetch_array($_planned))
+  {
+    // Per rij, haal de planning op en stop deze in de array
+    $_data = array($_plan["userID"], $_plan["departmentID"], $_plan["date"], $_plan["dayPart"]);
+    array_push($_list_Planned, $_data);
+  }
+
+$_planner = $_user->requestDataAnd("*", "employee", "firstName", "Luc", "lastName", "Peters");
+// Per rij
+$_planner = mysqli_fetch_array($_planner); 
+
+foreach ($_departments as $_department) {
+
+    $_planned_emp = array();
+    $_ids = array();
+    foreach ($_list_Planned as $_planning) {
+        if ($_planning[1] == $_department[1]) {
+            $_employee = array($_planning[0], $_planning[2], $_planning[3]);
+            $_planned_emp[$_planning[0]][] = $_employee;
+            $_ids[] = $_planning[0];
+        }
+    }
+
+    $_ids = array_unique($_ids);
+    
+    if (!empty($_ids)) {
+        $_output.= '<span id="dept">'. $_department[0].
+                '</span><br>
+                <table class="table table-bordered">
+                    <tr>
+                    <th>'. $_employees[$_department[2]][1]. '<br>'. $_employees[$_department[2]][2]. '</th>
+                    ';
+
+                    for ($i=0; $i < 7; $i++) { 
+                        $_output.= '<th>'. $_weekdays[$i]. '<br>'. $_days[$i]. '</th>';
+                    }
+                    $_output.='</tr>';
+
+                    
+                    foreach ($_ids as $_id) {
+                        $_index = $_planned_emp[$_id][0][0];
+                        $_output.= '<tr><td></td>'; 
+                        for ($j=0; $j < count($_dates); $j++) { 
+                            $_check = false;
+                            foreach ($_planned_emp[$_id] as $_planning) {
+                                if($_planning[1] == $_dates[$j])
+                                {
+                                    if ($_employees[$_index][3] == 4) 
+                                    {
+                                        $_output.='<td style="background-color: #ffe6ff;">'. $_employees[$_index][1];
+
+                                        $_age = floor((time() - strtotime($_employees[$_index][4])) / 31556926);
+                                        if ((floor((time() - strtotime($_employees[$_index][4])) / 31556926)) < 18) {
+                                            $_output.='<span>*</span>';
+                                        }
+
+                                        if ($_planning[2] == 'm') {
+                                            $_output.='<span class="dayPart"> M</span>';
+                                        }
+                                        elseif ($_planning[2] == 'o') {
+                                            $_output.='<span class="dayPart"> O</span>';
+                                        }
+
+                                        $_output.='</td>';   
+                                    }
+                                    else
+                                    {
+                                        $_output.='<td>'. $_employees[$_index][1];
+
+                                        if ($_planning[2] == 'm') {
+                                            $_output.='<span class="dayPart"> M</span>';
+                                        }
+                                        elseif ($_planning[2] == 'o') {
+                                            $_output.='<span class="dayPart"> O</span>';
+                                        }
+                                        
+                                        $_output.='</td>'; 
+                                    }
+                                    
+                                    
+                                    $_check = true;        
+                                }
+                            }
+                            if (!$_check) {
+                                $_output.='<td></td>';
+                            }
+                        }
+                        $_output.= '</tr>';
+                    }                 
+                $_output.='</table>
+                <br>';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +230,65 @@ $_user = $_SESSION["_user"];
     <link href="../../assets/libs/flot/css/float-chart.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="../../dist/css/style.min.css" rel="stylesheet" />
+
+    <!--styles voor de planning tabel-->
+    <style>
+    table {
+        width: 100%;
+    }
+
+    #dept {
+      font-size: large;
+      font-weight: bold;
+    }
+
+    td {
+      font-size: 15px;
+    }
+
+    table td, table th, .table-bordered td, .table-bordered th {
+        border-collapse:collapse;
+        border-width: 1px;
+        width: 12.5%;
+    }
+    
+    .table-bordered thead {
+        background-color: #2255A4;
+        color: white;
+    }
+    
+    .table-bordered th {
+        font-weight: bold;
+        color: white;
+        font-size: 16px;
+        background-color: #2255a4;
+    }
+    
+    .table-bordered tr:nth-child(odd) {
+        background: rgba(0, 0, 0, 0.05);
+    }
+    
+    .table-bordered tr:nth-child(even) {
+        background: white;
+    }
+
+    .head {
+        background-color: orange;
+        width: 100%;
+        text-align: center;
+    }
+
+    h2 {
+        color: red;    
+        text-align: center;
+    }  
+
+    .dayPart {
+        color: orange;
+        font-size: 15px;
+    }
+    </style>
+
   </head>
 
   <body>
@@ -199,113 +445,29 @@ $_user = $_SESSION["_user"];
        <div class="card-body">                 
      <div class="table-responsive">                  
    <div class="container">
+   <form action="../planning/planning.php" method="post"> <!-- Sla geselecteerde werkzaamheden op -->
+                <label style="margin:8px; font-size:larger" for="week">Voor de week:</label>
+                    <select id='week' name='week' style="width: 5%; margin:8px;" class='form-control input-group'>;
+                        <?php
+
+                            $_num_weeks = date('W', strtotime('December 28th'));  //haal de week waarin 28 dec valt op, die valt altijd in de laatste week
+                            $_num_weeks++;
+                            for($i=1; $i<$_num_weeks; $i++) //laat voor elke week een optie zien in de dropdown
+                            {
+                              if($i==$_week_Nr){  //check of het week nummer al geselecteerd is
+                                echo '<option selected value="' . $i . '">' . $i . '</option>';
+                              }else{
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                              }
+                            }
+
+                        ?>
+                    </select>
+                    <button type="submit" class="btn btn-info" style="margin:8px;" name="_select_week">Toon planning</button>
+    </form>
    <div class="row">
     <div class="col-12"><br>
-      <h4>Afdeling 1 </h4> <!--placeholder, dit zou bijvoorbeeld worden: afdeling CAC wortel-->
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-          <tr id="ROW1">  <!--Met de arrows kunnen wisselen tussen de weken, vooruit en terug kijken-->
-              <th scope="col"> <button type="button" class="btn btn-info"><i class="fas fa-angle-left"></i></button>
-              <button type="button" class="btn btn-info"><i class="fas fa-angle-right"></i></button>
-              </th>
-              <th scope="col">Ma 10-01</th> <!-- De datum staat nu nog statisch, dit zou samen met de vooruit/achteruit knoppen een functie kunnen worden -->
-              <th scope="col">Di 11-01</th>
-              <th scope="col">Wo 12-01</th>
-              <th scope="col">Do 13-01</th>
-              <th scope="col">Vr 14-01</th>
-              <th scope="col">Za 15-01</th>
-              <th scope="col">Zo 16-01</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">Jans Janssen</th> <!--Naam werknemer-->
-              <td>3:00-12:00</td> 
-              <td>3:00-12:00</td> <!--Van hoelaat tot hoelaat-->
-              <td>12:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>Vrij</td> <!--Vrije dag-->
-              <td>Vrij</td>
-            </tr>
-            <tr>
-              <th scope="row">Justin Joosten </th>
-              <td>vrij</td>
-              <td>1:00-10:00</td>
-              <td>1:00-10:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-              <td>9:00-17:00</td>
-              <td>9:00-17:00</td>
-            </tr>
-            <tr>
-              <th scope="row">Jans Janssen</th>
-              <td>3:00-12:00</td>
-              <td>3:00-12:00</td>
-              <td>12:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>10:00-17:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-            </tr>
-            <tr>
-              <th scope="row">Justin Joosten </th>
-              <td>vrij</td>
-              <td>1:00-10:00</td>
-              <td>1:00-10:00</td>
-              <td>Vrij</td>
-              <td>Vrij</td>
-              <td>9:00-17:00</td>
-              <td>9:00-17:00</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div><br>
-
-  <div class="row">
-    <div class="col-12"><br>
-     <h4>Afdeling 2 </h4> <!--placeholder, dit zou bijvoorbeeld worden: afdeling CAC wortel-->
-      <table class="table table-bordered">
-        <thead>
-           <tr id="ROW1"> <!--Met de arrows kunnen wisselen tussen de weken, vooruit en terug kijken-->
-            <th scope="col"> <button type="button" class="btn btn-info"><i class="fas fa-angle-left"></i></button>
-            <button type="button" class="btn btn-info"><i class="fas fa-angle-right"></i></button>
-            </th>
-            <th scope="col">Ma 10-01</th>
-            <th scope="col">Di 11-01</th>
-            <th scope="col">Wo 12-01</th>
-            <th scope="col">Do 13-01</th>
-            <th scope="col">Vr 14-01</th>
-            <th scope="col">Za 15-01</th>
-            <th scope="col">Zo 16-01</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Jans Janssen</th>
-            <td>3:00-12:00</td>
-            <td>3:00-12:00</td>
-            <td>12:00-17:00</td>
-            <td>10:00-17:00</td>
-            <td>10:00-17:00</td>
-            <td>Vrij</td>
-            <td>Vrij</td>
-          </tr>
-          <tr>
-            <th scope="row">Justin Joosten </th>
-            <td>vrij</td>
-            <td>1:00-10:00</td>
-            <td>1:00-10:00</td>
-            <td>Vrij</td>
-            <td>Vrij</td>
-            <td>9:00-17:00</td>
-            <td>9:00-17:00</td>
-          </tr>
-         </tbody>
-        </table>
+      <?php echo $_output; //toon de gemaakte tabel ?>
        </div>
       </div>
     <br><br>
