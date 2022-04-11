@@ -120,6 +120,20 @@ class DataBase{
         $this->closeConn();
     }
 
+    //Haal gegevens op uit een database tussen 2 waarden en geef deze
+    public function getDataBetween($_select, $_table, $_between, $_b_Value1, $_b_Value2)
+    {
+        // Open de connectie
+        $this->openConn();
+
+        $_sql = "SELECT ". $_select ." FROM ". $_table. " WHERE ". $_between." BETWEEN "."'$_b_Value1'". " AND ". "'$_b_Value2';";
+        $_result = mysqli_query($this->_conn, $_sql);
+        return $_result;
+
+        // Sluit de connectie
+        $this->closeConn();
+    }
+
     /*
         Sla gegevens op in de database met behulp van een twee-dimensionele array 
         voorbeeld array
