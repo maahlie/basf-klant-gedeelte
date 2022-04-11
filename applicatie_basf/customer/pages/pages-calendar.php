@@ -259,8 +259,9 @@ foreach ($_departments as $_department) {
     
     .table-bordered th {
         font-weight: bold;
+        color: white;
         font-size: 16px;
-        background-color: orange;
+        background-color: #2255a4;
     }
     
     .table-bordered tr:nth-child(odd) {
