@@ -15,11 +15,6 @@ $list = $_user->requestDataWhere("workCompID", "departmentworkcomp", "department
 $row = $list->fetch_all();
 
 
-
-while($_res2 = mysqli_fetch_array($_list_worknames)){
-  $_departments[$_res2['departmentID']] = $_res2['departmentName'];
-}
-
 $_options_str = "";
 
 for($i=0; $i<$list->num_rows; $i++)
@@ -27,7 +22,7 @@ for($i=0; $i<$list->num_rows; $i++)
     $_list_worknames = $_user->requestDataWhere("workCompName", "workcomp", "workCompID", $row[$i][0]);
     $row2 = $_list_worknames->fetch_all();
 
-    $_options_str .= '<option value="' . $row[$i][0] . '">' . $row2[$i][0] . '</option>';
+    $_options_str .= '<option value="' . $row[$i][0] . '">' . $row2[0][0] . '</option>';
 }
 
 echo $_options_str;
