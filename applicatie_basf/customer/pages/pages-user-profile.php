@@ -38,6 +38,22 @@ $_user = $_SESSION["_user"];
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script>
+      function hideStatic()
+      {
+        let info_static = document.getElementsByClassName('info_static');
+
+        for (let i = 0; i < info_static.length; i++){
+          if(info_static[i].style.display=='inline'){
+            info_static[i].style.display = 'none';
+          }else{
+            info_static[i].style.display = 'inline';
+          }
+        }
+
+      }
+    </script>
   </head>
 
   <body>
@@ -250,6 +266,7 @@ $_user = $_SESSION["_user"];
             <div class="col-md-8">
               <div class="card mb-3">
                 <div class="card-body">
+                <form method="POST" name="edit_form" action="../account/update_info.php">
                   <div class="row">
                     <div class="col-sm-3"> <!-- Naam -->
                       <h6 class="mb-0">Naam</h6>
@@ -270,6 +287,7 @@ $_user = $_SESSION["_user"];
                         echo $_user->getCity();
                       ?>
                     </div>
+                    <input type='text' class="info_static form-control" id='_city' name='_city' value='' style="display: none;" placeholder="Stad/dorp">
                   </div>
                   <hr>
                   <div class="row"> <!-- Adress -->
@@ -281,6 +299,8 @@ $_user = $_SESSION["_user"];
                         echo $_user->getAddress();
                       ?>
                     </div>
+                    <input type='text' class="info_static form-control" id='_street' name='_street' value='' style="display: none;" placeholder="Straatnaam">
+                    <input type='text' class="info_static form-control" id='_house_nr' name='_house_nr' value='' style="display: none;" placeholder="Huisnummer">
                   </div>
                   <hr>
                   <div class="row"> <!-- email adress -->
@@ -298,11 +318,12 @@ $_user = $_SESSION["_user"];
                     <div class="col-sm-3">
                       <h6 class="mb-0">Email privé</h6>
                     </div>
-                    <div class="col-sm-9 text-secondary">
+                    <div class="col-sm-9 text-secondary ">
                        <?php
                           echo $_user->getEmailPrivate();
                        ?>
                     </div>
+                    <input type='text' class="info_static form-control" id='_emailP' name='_emailP' value='' style="display: none;">
                   </div>
                   <hr>
                   <div class="row"> <!-- Mobiel telefoon nummer -->
@@ -314,6 +335,7 @@ $_user = $_SESSION["_user"];
                       echo $_user->getPhone();
                      ?>
                     </div>
+                    <input type='text' class="info_static form-control" id='_phone' name='_phone' value='' style="display: none;">
                   </div>
                   <hr>
                   <div class="row"> <!-- Nood telefoon nummer -->
@@ -325,9 +347,22 @@ $_user = $_SESSION["_user"];
                         echo $_user->getEmergency();
                       ?>
                     </div>
+                    <input type='text' class="info_static form-control" id='_emergency' name='_emergency' value='' style="display: none;">
                   </div>
-                  <hr> <!-- knop om je gegevens aan te kunnen passen, *nog niet functioneel* -->
-                  <button type="button" class="btn btn-info"><i class="mdi mdi-brush"></i> Bewerk informatie</button>
+                  <hr>
+                  <div class="row info_static" style="display: none;">
+                    <div class="col-sm-3"> <!-- wachtwoord -->
+                      <h6 class="mb-0">Wachtwoord</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    </div>
+                    <input type='password' class="info_static form-control" id='_password' name='_password' value='' style="display: none;" minlength="8">
+                  </div>
+                  <hr>
+                    <!-- knop om je gegevens aan te kunnen passen, *nog niet functioneel* -->
+                  <button type="button" class="btn btn-info" onclick="hideStatic();"><i class="mdi mdi-brush"></i> Bewerk informatie</button>
+                  <input type="submit" id="btn_edit" name="btn_edit" class="btn btn-info info_static" style="display: none;" onclick="hideStatic();"></input>
+                  </form>
                  </div>
                </div>
               </div>

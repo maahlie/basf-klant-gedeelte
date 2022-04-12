@@ -17,6 +17,8 @@ class UserAccount{
     protected $_phone_Emerg;
     protected $_department;
     protected $_clearance;
+    protected $_password;
+    protected $_salt;
     
     protected $_address;
     protected $_city;
@@ -306,6 +308,18 @@ class UserAccount{
         $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
     }
 
+    public function setEmailP($_email)
+    {
+        $this->_email_Private = $_email;
+
+        // Maak een twee-dimensionele array van de gegevens
+        $_data = array (
+            array("emailPrivate", $this->_email_Private)          
+        );
+
+        $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
+    }
+
     // Verander het telefoonnummer en wijzig deze in de database
     public function setPhone($_phone)
     {
@@ -346,6 +360,19 @@ class UserAccount{
         $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
     }
 
+    public function setStreet($_streetName, $_houseNr)
+    {
+        $this->_address = $_streetName. " ". $_houseNr ;
+
+        // Maak een twee-dimensionele array van de gegevens
+        $_data = array (
+            array("streetName", $_streetName),
+            array("houseNr", $_houseNr)          
+        );
+
+        $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
+    }
+
     // Verander de stad en wijzig deze in de database
     public function setCity($_city)
     {
@@ -380,6 +407,20 @@ class UserAccount{
         // Maak een twee-dimensionele array van de gegevens
         $_data = array (
             array("postalCode", $this->_postal)          
+        );
+
+        $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
+    }
+
+    public function setPassword($_password, $_salt)
+    {
+        $this->_password = $_password;
+        $this->_salt = $_salt;
+
+        // Maak een twee-dimensionele array van de gegevens
+        $_data = array (
+            array("password", $this->_password),
+            array("salt", $this->_salt)
         );
 
         $this->_database->updateData("employee", $_data, "userID", $this->_table_ID);
