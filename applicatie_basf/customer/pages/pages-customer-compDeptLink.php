@@ -37,6 +37,14 @@ $_user = $_SESSION["_user"];
       href="../../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css"
       rel="stylesheet"
     />
+
+    <style>
+      @media only screen and (max-width: 600px) {
+        #table_responsive{
+          overflow:scroll;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -183,8 +191,8 @@ $_user = $_SESSION["_user"];
           <div class="row">
             <!-- column -->
             
-            <div class="col-md-12">
-            <div class="card">
+            <div class="col-md-12" >
+            <div class="card" id="table_responsive">
 
         <table class="table table-bordered">
           <thead>
