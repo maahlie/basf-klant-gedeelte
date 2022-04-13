@@ -63,6 +63,14 @@ for ($i=0; $i < 7; $i++)
     <!-- Custom CSS -->
     <link href="../../dist/css/bussen.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <style>
+      @media only screen and (max-width: 600px) {
+        #table_responsive{
+          overflow:scroll;
+        }
+      }
+    </style>
   </head>
 
   <body>
@@ -205,7 +213,7 @@ for ($i=0; $i < 7; $i++)
         </div>
         <!-- Container fluid  -->
         <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="table_responsive">
           <div class="col-4">
         <h3>Bussen</h3>
 <form action="../planning/insertbus.php" method="post">
